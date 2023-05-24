@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Gototop from "./gototop";
 import Navbar from "./navbar";
 import Sidebar from "./sidebar";
 
@@ -21,9 +22,9 @@ export default function Layout({ children }) {
             <div id="content">
               <Navbar />
               {children}
-              
             </div>
           </div>
+          <Gototop />
         </div>
       </div>
     </div>

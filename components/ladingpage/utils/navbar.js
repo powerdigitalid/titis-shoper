@@ -1,5 +1,4 @@
 import React from "react";
-import Banner from "./banner";
 
 export default function Navbar() {
   return (
@@ -87,7 +86,6 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
-      <Banner />
     </div>
   );
 }

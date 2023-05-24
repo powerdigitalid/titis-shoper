@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 export default function Sidebar() {
@@ -16,19 +17,17 @@ export default function Sidebar() {
           </div>
           <div className="sidebar-brand-text mx-3">Titis Shoper</div>
         </a>
-        <hr className="sidebar-divider my-0" />
+        
         <li className="nav-item active">
           <a className="nav-link" href="index.html">
             <i className="fas fa-fw fa-tachometer-alt" />
             <span>Dashboard</span>
           </a>
         </li>
-        <hr className="sidebar-divider" />
-        <div className="sidebar-heading">Features</div>
         <li className="nav-item">
-          <a
+          <Link
             className="nav-link collapsed"
-            href="#"
+            href="/admin/produk"
             data-toggle="collapse"
             data-target="#collapseBootstrap"
             aria-expanded="true"
@@ -36,7 +35,7 @@ export default function Sidebar() {
           >
             <i className="far fa-fw fa-window-maximize" />
             <span>Input Produk</span>
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
           <a
@@ -55,8 +54,7 @@ export default function Sidebar() {
             className="collapse"
             aria-labelledby="headingForm"
             data-parent="#accordionSidebar"
-          >
-          </div>
+          ></div>
         </li>
         <li className="nav-item">
           <a
@@ -78,7 +76,6 @@ export default function Sidebar() {
           </a>
         </li>
         <hr className="sidebar-divider" />
-        <div className="sidebar-heading">Log-Admin</div>
         <li className="nav-item">
           <a className="nav-link" href="charts.html">
             <i className="fas fa-fw fa-chart-area" />
@@ -86,7 +83,6 @@ export default function Sidebar() {
           </a>
         </li>
         <hr className="sidebar-divider" />
-        <div className="version" id="version-ruangadmin" />
       </ul>
     </div>
   );

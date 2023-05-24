@@ -125,24 +125,8 @@ export default function Footer() {
             <div className="col-sm-12 text-center">
               <p>
                 <span>
-                  {/* Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. */}
-                  Copyright © All rights reserved | This template is made with{" "}
-                  <i className="icon-heart" aria-hidden="true" /> by{" "}
-                  <a href="https://colorlib.com" target="_blank">
-                    Colorlib
-                  </a>
-                  {/* Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. */}
-                </span>
-                <span className="block">
-                  Demo Images:{" "}
-                  <a href="http://unsplash.co/" target="_blank">
-                    Unsplash
-                  </a>{" "}
-                  ,{" "}
-                  <a href="http://pexels.com/" target="_blank">
-                    Pexels.com
-                  </a>
-                </span>
+                  Copyright © Titis Shoper | This template is made with by Titis Shoper
+                  </span>
               </p>
             </div>
           </div>
