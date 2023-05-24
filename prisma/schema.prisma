@@ -10,11 +10,27 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model user {
+model User {
   id        Int      @id @default(autoincrement())
   name      String
   username  String   @unique(map: "User_username_key")
   password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
+}
+
+model Product {
+  id    Int    @id @default(autoincrement())
+  name  String
+  price Float
+  image String
+}
+
+model Order {
+  id    Int     @id @default(autoincrement())
+  name  String
+  date  String
+  total Float
+  order Json
+  state Boolean @default(false)
 }
