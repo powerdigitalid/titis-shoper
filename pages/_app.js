@@ -16,6 +16,7 @@ import '../public/dist/fonts/flaticon/font/flaticon.css'
 import '../public/dist/admin/css/ruang-admin.min.css'
 
 
+
 export default function App({ Component, pageProps }) {
   return <Component {...pageProps} />
 }

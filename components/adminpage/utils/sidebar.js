@@ -1,6 +1,20 @@
 import React from "react";
+import {useRouter} from 'next/router';
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { removeCookie } from "../../../libs/cookie.lib";
 
 export default function Sidebar() {
+  const router = useRouter();
+  const [user, setUser] = useState({});
+
+
+  const handelLogout = () => {
+    removeCookie("token");
+    toast.success("Logout Success");
+    router.push("/login");
+  };
+
   return (
     <div>
       <ul
@@ -80,7 +94,7 @@ export default function Sidebar() {
         <hr className="sidebar-divider" />
         <div className="sidebar-heading">Log-Admin</div>
         <li className="nav-item">
-          <a className="nav-link" href="charts.html">
+          <a className="nav-link" href="charts.html" onClick={handelLogout}>
             <i className="fas fa-fw fa-chart-area" />
             <span>Log Out</span>
           </a>
