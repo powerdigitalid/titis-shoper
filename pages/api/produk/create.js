@@ -28,12 +28,13 @@ export default async (req, res) => {
       if (err) {
         return res.status(400).json({ error: err.message });
       }
-      const { name, price } = req.body;
+      const { name, price, desc } = req.body;
       const image = `/upload/${req.file.filename}`;
       const product = await prisma.product.create({
         data: {
           name,
           price: parseInt(price),
+          desc,
           image,
         },
       });

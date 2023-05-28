@@ -6,7 +6,7 @@ import {useRouter} from 'next/router';
 export default function Inputproduct() {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
-  // const [desc, setDesc] = useState("");
+  const [desc, setDesc] = useState("");
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -21,7 +21,7 @@ export default function Inputproduct() {
     data.append("name", name);
     data.append("price", price);
     data.append("image", image);
-    // data.append("desc", desc);
+    data.append("desc", desc);
     setLoading(true);
     fetch("/api/produk/create", {
       method: "POST",
@@ -32,7 +32,7 @@ export default function Inputproduct() {
         setLoading(false);
         setName("");
         setPrice("");
-        // setDesc("");
+        setDesc("");
         setImage(null);
         toast.success("Produk berhasil ditambahkan");
         router.push("/admin/produk");
@@ -119,6 +119,8 @@ export default function Inputproduct() {
                         id="exampleFormControlTextarea1"
                         rows="3"
                         placeholder="Deskripsi Produk"
+                        value={desc}
+                        onChange={(e) => setDesc(e.target.value)}
                       />
                     </div>
                   </div>

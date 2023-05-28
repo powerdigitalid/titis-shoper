@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import {useState, useEffect} from "react";
 import {moneyFormat} from "../../../helpers";
+import { toast } from "react-toastify";
 
 export default function Allproduct() {
   const [data, setData] = useState([])
@@ -25,6 +26,25 @@ export default function Allproduct() {
           console.log(err);
           setLoading(false);
           setError(err);
+      });
+  }
+
+  const handleDelete = (id)=>{
+    fetch(`/api/produk/delete?id=${id}`, {
+      method: "DELETE",
+  })
+      .then((res) => res.json())
+      .then((res) => {
+          if (res.data) {
+              toast.success("Produk berhasil dihapus");
+              handleProduct();
+          } else {
+              toast.error("Produk gagal dihapus");
+          }
+      })
+      .catch((err) => {
+          console.log(err);
+          toast.error("Produk gagal dihapus");
       });
   }
 
@@ -64,7 +84,7 @@ export default function Allproduct() {
                     <div>
                       <Link href="/admin/produk/detail" className="btn btn-primary btn-sm">Detail</Link>
                       <Link href="/admin/produk/editproduk" className="btn btn-primary btn-sm">Edit</Link>
-                      <button className="btn btn-primary btn-sm">Delete</button>
+                      <button className="btn btn-primary btn-sm" onClick={()=>handleDelete(prod._id)}>Delete</button>
                     </div>
                   </div>
                 </div>
