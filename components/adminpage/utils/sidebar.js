@@ -13,7 +13,7 @@ export default function Sidebar() {
   const handelLogout = () => {
     removeCookie("token");
     toast.success("Logout Success");
-    router.push("/login");
+    router.push("/");
   };
 
   return (
@@ -91,7 +91,7 @@ export default function Sidebar() {
         </li>
         <hr className="sidebar-divider" />
         <li className="nav-item">
-          <a className="nav-link" href="charts.html" onClick={handelLogout}>
+          <a className="nav-link" onClick={handelLogout}>
             <i className="fas fa-fw fa-chart-area" />
             <span>Log Out</span>
           </a>

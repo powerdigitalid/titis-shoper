@@ -57,7 +57,7 @@ export default function Produk() {
                     <a href="#">{prod.name}</a>
                   </h2>
                   <span className="price mb-3">{moneyFormat(prod.price)}</span>
-                  <Link href={`/ladingpage/produk/detail/${prod.id}`} className="btn btn-primary  btn-sm">Detail</Link>
+                  <Link href={`/ladingpage/produk/detailproduk/${prod.id}`} className="btn btn-primary btn-sm">Detail</Link>
                       <Link href="/admin/produk/editproduk" className="btn btn-primary ml-2 btn-sm">Buy</Link>
                 </div>
               </div>

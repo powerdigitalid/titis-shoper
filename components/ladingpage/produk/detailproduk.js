@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 
 export default function Detailproduk() {
   //detail product by id product
-  const [data, setData] = useState([])
+  const [data, setData] = useState({});
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
   const router = useRouter()

@@ -15,8 +15,13 @@ import '../public/dist/fonts/flaticon/font/flaticon.css'
 // admin css
 import '../public/dist/admin/css/ruang-admin.min.css'
 
-
+//toastify
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return <>
+  <Component {...pageProps} />
+  <ToastContainer />
+  </>
 }
