@@ -1,7 +1,37 @@
 import Link from "next/link";
 import React from "react";
+import {useState, useEffect} from "react";
+import {moneyFormat} from "../../../helpers";
 
 export default function Produk() {
+  const [data, setData] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
+
+  const handleProduct = ()=>{
+    fetch('/api/produk/all', {
+      method: "GET",
+  })
+      .then((res) => res.json())
+      .then((res) => {
+          if (res.data) {
+              setData(res.data);
+          } else {
+              setData([]);
+          }
+          setLoading(false);
+      })
+      .catch((err) => {
+          console.log(err);
+          setLoading(false);
+          setError(err);
+      });
+  }
+
+  useEffect(() => {
+    handleProduct();
+}, []);
+
   return (
     <div>
       <div className="colorlib-product">
@@ -12,82 +42,28 @@ export default function Produk() {
             </div>
           </div>
           <div className="row row-pb-md">
-            <div className="col-lg-3 mb-4 text-center">
+          {data.length > 0 ? data.map((prod, index) => (
+            <div className="col-lg-3 mb-4 text-center" key={index}>
               <div className="product-entry border">
                 <a href="#" className="prod-img">
                   <img
-                    src="/dist/images/item-1.jpg"
+                    src={prod.image}
                     className="img-fluid"
                     alt="Free html5 bootstrap 4 template"
                   />
                 </a>
                 <div className="desc">
                   <h2>
-                    <a href="#">Women`s Boots Shoes Maca</a>
+                    <a href="#">{prod.name}</a>
                   </h2>
-                  <span className="price mb-3">$139.00</span>
-                  <Link href="/ladingpage/produk/detail" className="btn btn-primary  btn-sm">Detail</Link>
+                  <span className="price mb-3">{moneyFormat(prod.price)}</span>
+                  <Link href={`/ladingpage/produk/detail/${prod.id}`} className="btn btn-primary  btn-sm">Detail</Link>
                       <Link href="/admin/produk/editproduk" className="btn btn-primary ml-2 btn-sm">Buy</Link>
                 </div>
               </div>
             </div>
-            <div className="col-lg-3 mb-4 text-center">
-              <div className="product-entry border">
-                <a href="#" className="prod-img">
-                  <img
-                    src="/dist/images/item-2.jpg"
-                    className="img-fluid"
-                    alt="Free html5 bootstrap 4 template"
-                  />
-                </a>
-                <div className="desc">
-                  <h2>
-                    <a href="#">Women`s Minam Meaghan</a>
-                  </h2>
-                  <span className="price mb-3">$139.00</span>
-                  <Link href="/ladingpage/produk/detail" className="btn btn-primary  btn-sm">Detail</Link>
-                      <Link href="/admin/produk/editproduk" className="btn btn-primary ml-2 btn-sm">Buy</Link>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3 mb-4 text-center">
-              <div className="product-entry border">
-                <a href="#" className="prod-img">
-                  <img
-                    src="/dist/images/item-3.jpg"
-                    className="img-fluid"
-                    alt="Free html5 bootstrap 4 template"
-                  />
-                </a>
-                <div className="desc">
-                  <h2>
-                    <a href="#">Men`s Taja Commissioner</a>
-                  </h2>
-                  <span className="price mb-3">$139.00</span>
-                  <Link href="/ladingpage/produk/detail" className="btn btn-primary  btn-sm">Detail</Link>
-                      <Link href="/admin/produk/editproduk" className="btn btn-primary ml-2 btn-sm">Buy</Link>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-3 mb-4 text-center">
-              <div className="product-entry border">
-                <a href="#" className="prod-img">
-                  <img
-                    src="/dist/images/item-4.jpg"
-                    className="img-fluid"
-                    alt="Free html5 bootstrap 4 template"
-                  />
-                </a>
-                <div className="desc">
-                  <h2>
-                    <a href="#">Russ Men`s Sneakers</a>
-                  </h2>
-                  <span className="price mb-3">$139.00</span>
-                  <Link href="/ladingpage/produk/detail" className="btn btn-primary  btn-sm">Detail</Link>
-                      <Link href="/admin/produk/editproduk" className="btn btn-primary ml-2 btn-sm">Buy</Link>
-                </div>
-              </div>
-            </div>
+            )) : <h3 className="text-center">Belum ada produk</h3>}
+            
             <div className="w-100" />
           </div>
           <div className="row">

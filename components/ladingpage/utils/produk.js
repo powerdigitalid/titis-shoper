@@ -3,32 +3,33 @@ import {useState, useEffect} from "react";
 import {moneyFormat} from "../../../helpers";
 
 export default function Produk() {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [data, setData] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
-  const handleProduct = () => {
-    fetch('/api/produk/all',{
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      setData(data);
-      setLoading(false);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-      setError(true);
-    });
-  };
+  const handleProduct = ()=>{
+    fetch('/api/produk/all', {
+      method: "GET",
+  })
+      .then((res) => res.json())
+      .then((res) => {
+          if (res.data) {
+              setData(res.data);
+          } else {
+              setData([]);
+          }
+          setLoading(false);
+      })
+      .catch((err) => {
+          console.log(err);
+          setLoading(false);
+          setError(err);
+      });
+  }
 
   useEffect(() => {
     handleProduct();
-  }, []);
+}, []);
 
   return (
     <div>
@@ -40,28 +41,28 @@ export default function Produk() {
             </div>
           </div>
           <div className="row row-pb-md">
-            
-            <div className="col-lg-3 mb-4 text-center">
+          {data.length > 0 ? data.map((prod, index) => (
+            <div className="col-lg-3 mb-4 text-center" key={index} >
               <div className="product-entry border">
                 <a href="#" className="prod-img">
                   <img
-                    src=""
+                    src={prod.image}
                     className="img-fluid"
                     alt="Free html5 bootstrap 4 template"
                   />
                 </a>
                 <div className="desc">
                   <h2>
-                    <a href="#">""</a>
+                    <a href="#">{prod.name}</a>
                   </h2>
                   <span className="price">
-                    90000
+                    {prod.price}
                   </span>
                 </div>
                 <button className="btn btn-primary btn-addtocart"> Add to Cart</button>
               </div>
             </div>
-            
+            )) : <h3 className="text-center">Belum ada produk</h3>}
           </div>
           <div className="row">
             <div className="col-md-12 text-center">

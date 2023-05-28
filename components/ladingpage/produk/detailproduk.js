@@ -1,7 +1,42 @@
 import Link from 'next/link'
 import React from 'react'
+import {useState, useEffect} from 'react'
+import {moneyFormat} from "../../../helpers";
+import { useRouter } from 'next/router'
 
 export default function Detailproduk() {
+  //detail product by id product
+  const [data, setData] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
+  const router = useRouter()
+  const { id } = router.query
+
+  const handleProductDetail = (id)=>{
+    fetch(`/api/produk/${id}`, {
+      method: "GET",
+  })
+      .then((res) => res.json())
+      .then((res) => {
+          if (res.data) { 
+              setData(res.data);
+          } else {
+              setData([]);
+          }
+          setLoading(false);
+      })
+      .catch((err) => {
+          console.log(err);
+          setLoading(false);
+          setError(err);
+      });
+  }
+
+  useEffect(() => {
+    handleProductDetail(id);
+}, [id]);
+
+  
   return (
     <div>
         <div className="card author-box card-primary">
@@ -12,16 +47,16 @@ export default function Detailproduk() {
                 <div className="col-md-6"> 
                   <img
                     className="card-img-top"
-                    src="/dist/images/item-1.jpg"
+                    src={data.image}
                     alt="..."
                   />
                 </div>
                 <div className="col-md-6">
                   <div className="small mb-1">SKU: BST-498</div>
-                  <h1 className="display-5 fw-bolder">Shop item template</h1>
+                  <h1 className="display-5 fw-bolder">{data.name}</h1>
                   <div className="fs-5 mb-5">
-                    <span className="text-decoration-line-through">$45.00</span>
-                    <span>$40.00</span>
+                    <span className="text-decoration-line-through">{moneyFormat(prod.price)}</span>
+                    
                   </div>
                   <p className="lead">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.

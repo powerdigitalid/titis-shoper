@@ -2,6 +2,27 @@ import { useState, useEffect } from "react";
 import { moneyFormat } from "../../../helpers";
 
 const ProductModal = () => {
+  const [modal, setModal] = useState(false);
+  const [order, setOrder] = useState([]);
+
+  const handleChangeModal = () => {
+    setModal(!modal);
+  };
+
+  const handleEditQuantity =(id)=> {
+    const newOrder = order.map((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          quantity: item.quantity + 1,
+        };
+      }
+      return item;
+    }); 
+
+    setOrder(newOrder);
+  }
+    
 
   return (
     <div
