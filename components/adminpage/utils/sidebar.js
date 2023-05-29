@@ -52,9 +52,9 @@ export default function Sidebar() {
           </Link>
         </li>
         <li className="nav-item">
-          <a
+          <Link
             className="nav-link collapsed"
-            href="#"
+            href="/admin/user"
             data-toggle="collapse"
             data-target="#collapseForm"
             aria-expanded="true"
@@ -62,7 +62,7 @@ export default function Sidebar() {
           >
             <i className="fab fa-fw fa-wpforms" />
             <span>User</span>
-          </a>
+          </Link>
           <div
             id="collapseForm"
             className="collapse"
@@ -71,9 +71,9 @@ export default function Sidebar() {
           ></div>
         </li>
         <li className="nav-item">
-          <a
+          <Link
             className="nav-link collapsed"
-            href="#"
+            href="/admin/pemesanan"
             data-toggle="collapse"
             data-target="#collapseTable"
             aria-expanded="true"
@@ -81,7 +81,7 @@ export default function Sidebar() {
           >
             <i className="fas fa-fw fa-table" />
             <span>Pemesanan</span>
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
           <a className="nav-link" href="ui-colors.html">

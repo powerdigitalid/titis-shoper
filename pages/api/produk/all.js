@@ -1,4 +1,4 @@
-import { prisma } from "../../../libs/prisma.libs";
+import { prisma } from "../../../libs/prisma.libs.js";
 
 export default function handler(req, res){
   prisma.product.findMany().then((product) => {
