@@ -46,7 +46,7 @@ export default function Navbar() {
                     <a href="contact.html">Contact</a>
                   </li>
                   <li className="cart">
-                    <a href="cart.html">
+                    <a href="/ladingpage/cart">
                       <i className="icon-shopping-cart" /> Cart [0]
                     </a>
                   </li>

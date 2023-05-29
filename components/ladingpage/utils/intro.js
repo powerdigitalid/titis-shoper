@@ -9,8 +9,8 @@ export default function Intro() {
             <div className="row">
               <div className="col-sm-12 text-center">
                 <h2 className="intro">
-                  It started with a simple idea: Create quality, well-designed
-                  products that I wanted myself.
+                  Kami meiliki 2 produk kopi yang berbeda, yaitu Arabica dan Robusta.
+                  Yang mana Arabica memiliki rasa yang lebih halus dan Robusta memiliki rasa yang lebih kuat.
                 </h2>
               </div>
             </div>
@@ -24,11 +24,11 @@ export default function Intro() {
                   <a
                     href="#"
                     className="featured-img"
-                    style={{ backgroundImage: "url(/dist/images/men.jpg)" }}
+                    style={{ backgroundImage: "url(/dist/images/arabica.jpg)" }}
                   />
                   <div className="desc">
                     <h2>
-                      <a href="#">Shop Men`s Collection</a>
+                      <a href="#">Kopi Arabica</a>
                     </h2>
                   </div>
                 </div>
@@ -38,11 +38,11 @@ export default function Intro() {
                   <a
                     href="#"
                     className="featured-img"
-                    style={{ backgroundImage: "url(/dist/images/women.jpg)" }}
+                    style={{ backgroundImage: "url(/dist/images/robusta.jpg)" }}
                   />
                   <div className="desc">
                     <h2>
-                      <a href="#">Shop Women`s Collection</a>
+                      <a href="#">Kopi Robusta</a>
                     </h2>
                   </div>
                 </div>

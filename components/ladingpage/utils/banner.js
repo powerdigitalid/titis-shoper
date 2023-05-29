@@ -6,7 +6,7 @@ export default function Banner() {
       <aside id="colorlib-hero">
         <div className="flexslider">
           <ul className="slides">
-            <li style={{ backgroundImage: "url(/dist/images/img_bg_1.jpg)" }}>
+            <li style={{ backgroundImage: "url(/dist/images/bg-ladingpage.jpg)" }}>
               <div className="overlay" />
               <div className="container-fluid">
                 <div className="row">
