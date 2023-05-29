@@ -1,6 +1,53 @@
 import React from "react";
+import {useState, useEffect} from 'react'
+import { toast } from "react-toastify";
 
 export default function Tabeluser() {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState("");
+  
+  const handleUser = () => {
+    fetch('/api/user/all', {
+      method: "GET",
+      })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.data) {
+          setData(res.data);
+        } else {
+          setData([]);
+        }
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+        setError(err);
+      });
+  };
+
+  useEffect(() => {
+    handleUser();
+  }, []);
+
+  const handleDeleteData = (id) => {
+    fetch(`/api/user/delete?id=${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.data) {
+          handleUser();
+          toast.success("Data berhasil dihapus");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Data gagal dihapus");
+      });
+  };
+
   return (
     <div>
       <div className="card author-box card-primary mt-2">
@@ -52,7 +99,7 @@ export default function Tabeluser() {
                               aria-label="Name: activate to sort column descending"
                               style={{ width: "148.781px" }}
                             >
-                              Name
+                              User Name
                             </th>
                             <th
                               className="sorting"
@@ -63,7 +110,7 @@ export default function Tabeluser() {
                               aria-label="Position: activate to sort column ascending"
                               style={{ width: "238.031px" }}
                             >
-                              Email
+                              Passwrod
                             </th>
                             <th
                               className="sorting"
@@ -78,35 +125,19 @@ export default function Tabeluser() {
                             </th>
                           </tr>
                         </thead>
-                        <tfoot>
-                          <tr>
-                            <th rowSpan={1} colSpan={1}>
-                              Name
-                            </th>
-                            <th rowSpan={1} colSpan={1}>
-                              Email
-                            </th>
-                            <th rowSpan={1} colSpan={1}>
-                              Action
-                            </th>
-                          </tr>
-                        </tfoot>
+                        
                         <tbody>
-                          <tr role="row" className="odd">
-                            <td className="sorting_1">Tiger Nixon</td>
-                            <td>example@gnail.com</td>
-                            <td><button className="btn btn-danger">Hapus</button></td>
+                        {data.length > 0 ? data.map((users, index) => (
+                          <tr role="row" className="odd" key={index}>
+                            <td className="sorting_1">{users.username}</td>
+                            <td>{users.password}</td>
+                            <td><button className="btn btn-danger" onClick={handleDeleteData}>Hapus</button></td>
                           </tr>
-                          <tr role="row" className="odd">
-                            <td className="sorting_1">Tiger Nixon</td>
-                            <td>example@gnail.com</td>
-                            <td><button className="btn btn-danger">Hapus</button></td>
-                          </tr>
-                          <tr role="row" className="odd">
-                            <td className="sorting_1">Tiger Nixon</td>
-                            <td>example@gnail.com</td>
-                            <td><button className="btn btn-danger">Hapus</button></td>
-                          </tr>
+                          )) : (
+                            <tr>
+                                <td colSpan="3" className="text-center">No Data</td>
+                            </tr>
+                        )}
                         </tbody>
                       </table>
                     </div>
