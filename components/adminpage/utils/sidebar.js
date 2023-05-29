@@ -84,7 +84,7 @@ export default function Sidebar() {
           </Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="ui-colors.html">
+          <a className="nav-link" href="/admin/history">
             <i className="fas fa-fw fa-palette" />
             <span>History Pemesanan</span>
           </a>
