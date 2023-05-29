@@ -33,7 +33,9 @@ model Order {
   name  String?
   date  String
   total Float?
+  addres String?
+  phone String?
   product Product @relation(fields: [productId], references: [id])
   productId Int
-  state Boolean @default(false)
+  state String? @default("unconfirmed")
 }
