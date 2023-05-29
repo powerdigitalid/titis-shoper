@@ -1,15 +1,15 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "../../libs/prisma.libs";
 
 export default async function handler(req, res) {
-  const prisma = new PrismaClient();
-
   //Get Orders
-  const orders = await prisma.order.findMany({
-    where: {
-      state: false,
-    },
-  });
-  res.status(200).json(orders);
+  if (req.method === "GET") {
+    const orders = await prisma.order.findMany({
+      where: {
+        state: false,
+      },
+    });
+    res.status(200).json(orders);
+  }
 
   //Create Orders
   if (req.method === "POST") {
@@ -17,7 +17,11 @@ export default async function handler(req, res) {
       data: {
         name: req.body.name,
         total: req.body.total,
-        order: req.body.order,
+        product: {
+          connect: {
+            id: parseInt(req.body.productId),
+          },
+        },
         date: req.body.date,
       },
     });

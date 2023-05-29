@@ -2,11 +2,16 @@ import Link from "next/link";
 import React from "react";
 import {useState, useEffect} from "react";
 import {moneyFormat} from "../../../helpers";
+import { toast } from "react-toastify";
 
 export default function Produk() {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [desc, setDesc] = useState("");
+
 
   const handleProduct = ()=>{
     fetch('/api/produk/all', {
@@ -27,6 +32,35 @@ export default function Produk() {
           setError(err);
       });
   }
+
+  //button buy add to chart
+  const handleAddBuy = (id, price) => {
+    fetch('/api/orders/create', {
+      method: "POST",
+      body: JSON.stringify({
+        name: "",
+        date: new Date(),
+        total: parseInt(price),
+        productId: id,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.data) {
+          toast.success("Berhasil ditambahkan ke keranjang");
+        } else {
+          toast.error("Gagal ditambahkan ke keranjang");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Terjadi kesalahan. Silakan coba lagi.");
+      });
+  };
+  
 
   useEffect(() => {
     handleProduct();
@@ -58,7 +92,7 @@ export default function Produk() {
                   </h2>
                   <span className="price mb-3">{moneyFormat(prod.price)}</span>
                   <Link href={`/ladingpage/produk/detailproduk/${prod.id}`} className="btn btn-primary btn-sm">Detail</Link>
-                      <Link href="/admin/produk/editproduk" className="btn btn-primary ml-2 btn-sm">Buy</Link>
+                  <a href className="btn btn-primary ml-2 btn-sm" onClick={()=>handleAddBuy(prod.id, prod.price)} >Buy</a>
                 </div>
               </div>
             </div>

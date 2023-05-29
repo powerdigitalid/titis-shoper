@@ -6,6 +6,9 @@ export default function Produk() {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
+  const [order, setOrder] = useState([])
+  const [total, setTotal] = useState(0)
+  // const [product, setProduct] = useState([])
 
   const handleProduct = ()=>{
     fetch('/api/produk/all', {
@@ -30,6 +33,21 @@ export default function Produk() {
   useEffect(() => {
     handleProduct();
 }, []);
+
+//Add and update order
+const handleOrder = (product) => {
+  let tempOrder = [...order];
+  let itemIndex = tempOrder.findIndex((item) => item.id === product.id);
+  if (itemIndex < 0) {
+      tempOrder.push({ ...product, qty: 1 });
+  } else {
+      tempOrder[itemIndex].qty += 1;
+  }
+  setOrder(tempOrder);
+  setTotal(tempOrder.reduce((a, b) => a + b.price * b.qty, 0));
+};
+
+
 
   return (
     <div>
@@ -59,7 +77,7 @@ export default function Produk() {
                     {prod.price}
                   </span>
                 </div>
-                <button className="btn btn-primary btn-addtocart"> Add to Cart</button>
+                <button className="btn btn-primary btn-addtocart" onClick={() => handleOrder(prod)}> Add to Cart</button>
               </div>
             </div>
             )) : <h3 className="text-center">Belum ada produk</h3>}
