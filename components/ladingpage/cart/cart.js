@@ -91,7 +91,7 @@ export default function Cart() {
                       <div className="d-flex justify-content-between align-items-center mb-4">
                         <div>
                           <p className="mb-1">Shopping cart</p>
-                          <p className="mb-0">Kamu memiliki 1 Barang</p>
+                          <p className="mb-0">Kamu memiliki {data.length} Barang</p>
                         </div>
                         <div>
                           <p className="mb-0">
@@ -104,7 +104,7 @@ export default function Cart() {
                       </div>
                       <div className="card mb-3">
                         <div className="card-body">
-                        {data.map((ord, index) => (
+                        {data.length > 0 ? data.map((ord, index) => (
                           <div className="d-flex justify-content-between" key={index}>
                             <div className="d-flex flex-row align-items-center">
                               <div>
@@ -129,7 +129,7 @@ export default function Cart() {
                               </a>
                             </div>
                           </div>
-                        ))}
+                        )) : <p className="text-center">Belum ada Produk Yang Dipilih</p>}
                         </div>
                       </div>
                     </div>

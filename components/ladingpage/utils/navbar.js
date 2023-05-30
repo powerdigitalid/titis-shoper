@@ -64,7 +64,7 @@ export default function Navbar() {
               <div className="col-sm-12 text-left menu-1">
                 <ul>
                   <li className="active">
-                    <a href="index.html">Home</a>
+                    <a href="/">Home</a>
                   </li>
                   <li className="has-dropdown">
                     <a href="men.html">Produk</a>

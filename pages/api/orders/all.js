@@ -6,6 +6,6 @@ export default async function handler(req, res) {
             product: true,
         },
     }).then((result)=>{
-        res.json(result);
+        res.json({data:result});
     });
 }
