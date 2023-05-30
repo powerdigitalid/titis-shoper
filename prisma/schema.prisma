@@ -20,22 +20,22 @@ model User {
 }
 
 model Product {
-  id    Int    @id @default(autoincrement())
+  id    Int     @id @default(autoincrement())
   name  String
   price Float
-  desc String?
+  desc  String?
   image String
   order Order[]
 }
 
 model Order {
-  id    Int     @id @default(autoincrement())
-  name  String?
-  date  String
-  total Float?
-  addres String?
-  phone String?
-  product Product @relation(fields: [productId], references: [id])
+  id        Int     @id @default(autoincrement())
+  name      String?
+  date      String
+  total     Float?
+  addres    String?
+  phone     String?
+  product   Product @relation(fields: [productId], references: [id])
   productId Int
-  state String? @default("unconfirmed")
+  state     String? @default("unconfirmed")
 }

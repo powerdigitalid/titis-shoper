@@ -1,6 +1,36 @@
 import React from "react";
+import { useState, useEffect } from "react";
 
 export default function Navbar() {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [order, setOrder] = useState([]);
+  const [state, setState] = useState("unconfirmed");
+
+  const handleOrder = () => {
+    fetch("/api/orders/orderCart?state=unconfirmed", {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.data) {
+          setOrder(res.data);
+        } else {
+          setOrder([]);
+        }
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+        setError(err);
+      });
+  };
+
+  useEffect(() => {
+    handleOrder();
+  }, []);
+
   return (
     <div>
       <nav className="colorlib-nav" role="navigation">
@@ -46,8 +76,8 @@ export default function Navbar() {
                     <a href="contact.html">Contact</a>
                   </li>
                   <li className="cart">
-                    <a href="/ladingpage/cart">
-                      <i className="icon-shopping-cart" /> Cart [0]
+                    <a href={`ladingpage/cart?state=${state}`}>
+                      <i className="icon-shopping-cart" /> Cart [{order.length}]
                     </a>
                   </li>
                 </ul>

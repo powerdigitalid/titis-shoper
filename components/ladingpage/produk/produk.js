@@ -42,6 +42,8 @@ export default function Produk() {
         date: new Date(),
         total: parseInt(price),
         productId: id,
+        addres:"",
+        phone:"",
       }),
       headers: {
         "Content-Type": "application/json",
@@ -52,7 +54,7 @@ export default function Produk() {
         if (res.data) {
           toast.success("Berhasil ditambahkan ke keranjang");
         } else {
-          toast.error("Gagal ditambahkan ke keranjang");
+          toast.seccess("Berhasil ditambahkan ke keranjang");
         }
       })
       .catch((err) => {
