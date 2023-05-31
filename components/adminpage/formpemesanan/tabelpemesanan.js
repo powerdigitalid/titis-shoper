@@ -11,7 +11,7 @@ export default function Tabelpemesanan() {
   const router = useRouter();
 
   const handleTabelOrder = ()=>{
-    fetch('/api/orders/all', {
+    fetch('/api/orders/orderCart?state=uncormirmed', {
       method: "GET",
   })
       .then((res) => res.json())
