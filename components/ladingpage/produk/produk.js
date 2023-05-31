@@ -54,7 +54,7 @@ export default function Produk() {
         if (res.data) {
           toast.success("Berhasil ditambahkan ke keranjang");
         } else {
-          toast.seccess("Berhasil ditambahkan ke keranjang");
+          toast.success("Berhasil ditambahkan ke keranjang");
         }
       })
       .catch((err) => {
@@ -93,7 +93,9 @@ export default function Produk() {
                     <a href="#">{prod.name}</a>
                   </h2>
                   <span className="price mb-3">{moneyFormat(prod.price)}</span>
-                  <Link href={`/ladingpage/produk/detailproduk/${prod.id}`} className="btn btn-primary btn-sm">Detail</Link>
+                  <a href={`/ladingpage/produk/detail/id=${prod.id}&name=${prod.name}&price=${prod.price}&desc=${prod.desc}&image=${prod.image}`}>
+                    <a className="btn btn-primary btn-addtocart">Detail</a>
+                  </a>
                   <a href className="btn btn-primary ml-2 btn-sm" onClick={()=>handleAddBuy(prod.id, prod.price)} >Buy</a>
                 </div>
               </div>

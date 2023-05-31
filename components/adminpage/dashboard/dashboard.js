@@ -1,6 +1,36 @@
 import React from "react";
+import {useState, useEffect} from 'react'
 
 export default function Dashboard() {
+  const [dataCount, setDataCount] = useState({history:0, booking:0, orders:0});
+
+  const handleCount =()=>{
+    fetch('/api/dashboard', {
+      method: "GET",
+      headers:{
+        "Content-Type": "application/json",
+      },
+    })
+    .then((res) => res.json())
+    .then((res) => {
+      if (res.data) {
+        return res.json();
+      } else {
+        throw new Error("Data not found");
+      }
+    })
+    .then((res) => {
+      setDataCount(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+  
+  useEffect(() => {
+    handleCount();
+  }, []);
+
   return (
     <div>
       <div className="container-fluid" id="container-wrapper">
@@ -23,17 +53,17 @@ export default function Dashboard() {
                 <div className="row align-items-center">
                   <div className="col mr-2">
                     <div className="text-xs font-weight-bold text-uppercase mb-1">
-                      Earnings (Monthly)
+                      Total History
                     </div>
                     <div className="h5 mb-0 font-weight-bold text-gray-800">
-                      $40,000
+                      {dataCount.history}
                     </div>
-                    <div className="mt-2 mb-0 text-muted text-xs">
+                    {/* <div className="mt-2 mb-0 text-muted text-xs">
                       <span className="text-success mr-2">
                         <i className="fa fa-arrow-up" /> 3.48%
                       </span>
                       <span>Since last month</span>
-                    </div>
+                    </div> */}
                   </div>
                   <div className="col-auto">
                     <i className="fas fa-calendar fa-2x text-primary" />
@@ -49,10 +79,10 @@ export default function Dashboard() {
                 <div className="row no-gutters align-items-center">
                   <div className="col mr-2">
                     <div className="text-xs font-weight-bold text-uppercase mb-1">
-                      Sales
+                      Data Order
                     </div>
                     <div className="h5 mb-0 font-weight-bold text-gray-800">
-                      650
+                      {dataCount.orders}
                     </div>
                     <div className="mt-2 mb-0 text-muted text-xs">
                       <span className="text-success mr-2">
@@ -104,7 +134,7 @@ export default function Dashboard() {
                       Pending Requests
                     </div>
                     <div className="h5 mb-0 font-weight-bold text-gray-800">
-                      18
+                      {dataCount.booking}
                     </div>
                     <div className="mt-2 mb-0 text-muted text-xs">
                       <span className="text-danger mr-2">

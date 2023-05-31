@@ -45,11 +45,12 @@ export default async function handler(req, res) {
     // }
 
     if (req.method === "DELETE") {
+        const {id} = req.query;
         const order = await prisma.order.delete({
             where: {
-                id: parseInt(req.body.id),
+                id: parseInt(id),
             },
         });
-        res.status(200).json(order);
-    }
+        res.status(200).json({ data: order });
+    } 
 }

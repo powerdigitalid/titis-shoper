@@ -13,15 +13,15 @@ export default function Banner() {
                   <div className="col-sm-6 offset-sm-3 text-center slider-text">
                     <div className="slider-text-inner">
                       <div className="desc">
-                        <h1 className="head-1">Men`s</h1>
-                        <h2 className="head-2">Shoes</h2>
+                        <h1 className="head-1">Titis</h1>
+                        <h2 className="head-2">Coffe</h2>
                         <h2 className="head-3">Collection</h2>
                         <p className="category">
-                          <span>New trending shoes</span>
+                          <span>New trending Coffe</span>
                         </p>
                         <p>
                           <a href="#" className="btn btn-primary">
-                            Shop Collection
+                            Arabica Coffe
                           </a>
                         </p>
                       </div>

@@ -57,7 +57,7 @@ export default function Cart() {
           toast.success("Berhasil diupdate");
           router.push('/checkout')
         } else {
-          toast.success("Berhasil diupdate");
+          toast.success("Berhasil Manambahkan data diri");
         }
       })
       .catch((err) => {
@@ -65,6 +65,27 @@ export default function Cart() {
         toast.error("Terjadi kesalahan saat mengupdate data");
       });
   }
+
+  const handleDelete = (e, id) => {
+    e.preventDefault();
+    fetch(`/api/orders/orderCart?id=${id}`, {
+        method: "DELETE",
+    })
+        .then((res) => res.json())
+        .then((res) => {
+            if (res.data) {
+                toast.success("Berhasil dihapus");
+                handleOrder();
+            } else {
+                toast.error("Gagal dihapus");
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            toast.error("Terjadi kesalahan saat menghapus data");
+        });
+  };
+
 
 
   useEffect(() => {
@@ -122,11 +143,13 @@ export default function Cart() {
                             </div>
                             <div className="d-flex flex-row align-items-center">
                               <div style={{ width: 130 }}>
-                                <h5 className="mb-0">Rp. {moneyFormat(ord.product.price)}</h5>
+                                <h5 className="mb-0">{moneyFormat(ord.product.price)}</h5>
                               </div>
-                              <a href="#!" style={{ color: "#cecece" }}>
-                                <i className="fas fa-trash-alt" />
-                              </a>
+                              <div className="d-flex align-items-center btn btn-secondary">
+                                <a href="#!" className="text-primary " onClick={(e) => handleDelete(e, ord.id)}>
+                                  X
+                                </a>
+                                </div>
                             </div>
                           </div>
                         )) : <p className="text-center">Belum ada Produk Yang Dipilih</p>}

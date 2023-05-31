@@ -10,18 +10,17 @@ export default function Detailproduk() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
   const router = useRouter()
-  const { id } = router.query
 
-  const handleProductDetail = (id)=>{
-    fetch(`/api/produk/${id}`, {
+  const handleDetailProduct = ()=>{
+    fetch(`/api/produk/${router.query.id}`, {
       method: "GET",
   })
       .then((res) => res.json())
       .then((res) => {
-          if (res.data) { 
+          if (res.data) {
               setData(res.data);
           } else {
-              setData([]);
+              setData({});
           }
           setLoading(false);
       })
@@ -33,8 +32,8 @@ export default function Detailproduk() {
   }
 
   useEffect(() => {
-    handleProductDetail(id);
-}, [id]);
+    handleDetailProduct();
+  }, []);
 
   
   return (
@@ -51,18 +50,16 @@ export default function Detailproduk() {
                     alt="..."
                   />
                 </div>
+
                 <div className="col-md-6">
                   <div className="small mb-1">SKU: BST-498</div>
                   <h1 className="display-5 fw-bolder">{data.name}</h1>
                   <div className="fs-5 mb-5">
-                    <span className="text-decoration-line-through">{moneyFormat(prod.price)}</span>
+                    <span className="text-decoration-line-through">{moneyFormat(data.price)}</span>
                     
                   </div>
                   <p className="lead">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Praesentium at dolorem quidem modi. Nam sequi consequatur
-                    obcaecati excepturi alias magni, accusamus eius blanditiis
-                    delectus ipsam minima ea iste laborum vero?
+                    {data.desc}
                   </p>
                   <div className="d-flex">
                     <Link
