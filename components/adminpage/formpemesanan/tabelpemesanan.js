@@ -9,6 +9,8 @@ export default function Tabelpemesanan() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
   const router = useRouter();
+  
+
 
   const handleTabelOrder = ()=>{
     fetch('/api/orders/orderCart?state=uncormirmed', {
@@ -57,6 +59,25 @@ export default function Tabelpemesanan() {
     });
   }
 
+  const handleDelete = (e, id) => {
+    e.preventDefault();
+    fetch(`/api/orders/orderCart?id=${id}`, {
+        method: "DELETE",
+    })
+        .then((res) => res.json())
+        .then((res) => {
+            if (res.data) {
+                toast.success("Berhasil dihapus");
+                handleOrder();
+            } else {
+                toast.error("Gagal dihapus");
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            toast.error("Terjadi kesalahan saat menghapus data");
+        });
+  };
 
   return (
     <div>
@@ -154,9 +175,11 @@ export default function Tabelpemesanan() {
                             <td>{ord.phone}</td>
                             <td>{ord.state}</td>
                             <td>
-                                <Link href="/admin/pemesanan/detail" className="btn btn-primary">Detail</Link>
+                                <Link href={`/admin/pemesanan/detail?id=${ord.id}`}> 
+                                <button className="btn btn-primary">Detail</button>
+                                </Link>
                                 <button className="btn btn-success" onClick={(e) => handleConfirm(e, ord.id)}>Konfirmasi</button>
-                                <button className="btn btn-danger">Hapus</button>
+                                <button className="btn btn-danger" onClick={(e) => handleDelete(e, ord.id)}>Hapus</button>
                             </td>
                           </tr>
                           )) : <p className="text-center">Belum ada Order</p>}

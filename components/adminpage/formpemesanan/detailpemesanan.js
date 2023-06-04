@@ -1,7 +1,40 @@
-import Link from "next/link";
-import React from "react";
+import Link from 'next/link'
+import React from 'react'
+import {useState, useEffect} from 'react'
+import {moneyFormat} from "../../../helpers/index";
+import { useRouter } from 'next/router'
 
 export default function Detailpemesanan() {
+  const [data, setData] = useState({});
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
+  const router = useRouter()
+
+  const handleDetailPesan = ()=>{
+    fetch(`/api/orders/${router.query.id}`, {
+      method: "GET",
+  })
+      .then((res) => res.json())
+      .then((res) => {
+          if (res.data) {
+              setData(res.data);
+          } else {
+              setData({});
+          }
+          setLoading(false);
+      })
+      .catch((err) => {
+          console.log(err);
+          setLoading(false);
+          setError(err);
+      });
+  }
+
+  useEffect(() => {
+    handleDetailPesan();
+  }, []);
+
+  
   return (
     <div>
       <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
@@ -28,7 +61,7 @@ export default function Detailpemesanan() {
                           <p className="mb-0">
                             <span className="text-muted"></span>{" "}
                             <a href="#!" className="text-body">
-                              <i className="fas fa-angle-down mt-1" /> 
+                              <i className="fas fa-angle-down mt-1" />
                             </a>
                           </p>
                         </div>
@@ -39,20 +72,20 @@ export default function Detailpemesanan() {
                             <div className="d-flex flex-row align-items-center">
                               <div>
                                 <img
-                                  src="/dist/images/item-1.jpg"
+                                  src={data.product.image}
                                   className="img-fluid rounded-3 mr-3"
                                   alt="Shopping item"
                                   style={{ width: 65 }}
                                 />
                               </div>
                               <div className="ms-3">
-                                <h5>Sepatu Santai</h5>
-                                <p className="small mb-0">Navy Blue</p>
+                                <h5>{data.product.name}</h5>
+                                <p className="small mb-0">{data.product.desc}</p>
                               </div>
                             </div>
                             <div className="d-flex flex-row align-items-center">
                               <div style={{ width: 130 }}>
-                                <h5 className="mb-0">Rp. 300.000</h5>
+                                <h5 className="mb-0">{moneyFormat(data.product.price)}</h5>
                               </div>
                               <a href="#!" style={{ color: "#cecece" }}>
                                 <i className="fas fa-trash-alt" />
@@ -75,45 +108,49 @@ export default function Detailpemesanan() {
                             />
                           </div>
                           <p className="small mb-2">Card type</p>
-                          <a href="#!" type="submit" className="text-white ml-2">
-                            <i className="fa-2x me-2" />
-                            - BCA
+                          <a
+                            href="#!"
+                            type="submit"
+                            className="text-white ml-2"
+                          >
+                            <i className="fa-2x me-2" />- BCA
                           </a>
-                          <a href="#!" type="submit" className="text-white ml-2">
-                            <i className="fa-2x me-2" />
-                            - BNI
+                          <a
+                            href="#!"
+                            type="submit"
+                            className="text-white ml-2"
+                          >
+                            <i className="fa-2x me-2" />- BNI
                           </a>
-                          <a href="#!" type="submit" className="text-white ml-2">
-                            <i className="fa-2x me-2" />
-                            - BRI
+                          <a
+                            href="#!"
+                            type="submit"
+                            className="text-white ml-2"
+                          >
+                            <i className="fa-2x me-2" />- BRI
                           </a>
-                          <a href="#!" type="submit" className="text-white ml-2">
-                            <i className="fa-2x" />
-                            - Mandiri
+                          <a
+                            href="#!"
+                            type="submit"
+                            className="text-white ml-2"
+                          >
+                            <i className="fa-2x" />- Mandiri
                           </a>
                           <form className="mt-4">
                             <div className="form-outline form-white mb-4">
-                              <input
-                                type="text"
-                                id="typeName"
-                                className="form-control form-control-lg"
-                                siez={17}
-                                placeholder="Name"
-                              />
+                              <h3 className="form-control form-control-lg">{data.name}</h3>
                               <label className="form-label" htmlFor="typeName">
                                 Nama
                               </label>
                             </div>
                             <div className="form-outline form-white mb-4">
-                              <input
-                                type="text"
-                                id="typeText"
-                                className="form-control form-control-lg"
-                                siez={17}
-                                placeholder="Jl KH Hasyim Ashari"
-                                minLength={19}
-                                maxLength={19}
-                              />
+                            <h3 className="form-control form-control-lg">{data.phone}</h3>
+                              <label className="form-label" htmlFor="typeText">
+                                Nomor Handphone
+                              </label>
+                            </div>
+                            <div className="form-outline form-white mb-4">
+                            <h3 className="form-control form-control-lg">{data.addres}</h3>
                               <label className="form-label" htmlFor="typeText">
                                 Alamat
                               </label>
@@ -121,16 +158,12 @@ export default function Detailpemesanan() {
                           </form>
                           <hr className="my-4" />
                           <div className="d-flex justify-content-between">
-                            <p className="mb-2">Subtotal</p>
-                            <p className="mb-2">Rp. 300.000</p>
-                          </div>
-                          <div className="d-flex justify-content-between">
                             <p className="mb-2">Shipping</p>
                             <p className="mb-2">Rp. 20.000</p>
                           </div>
                           <div className="d-flex justify-content-between mb-4">
                             <p className="mb-2">Total</p>
-                            <p className="mb-2">Rp. 320.000</p>
+                            <p className="mb-2">Rp.{data.total}</p>
                           </div>
                           <Link
                             href="/admin/pemesanan"
@@ -138,9 +171,7 @@ export default function Detailpemesanan() {
                             className="btn btn-info btn-block btn-lg"
                           >
                             <div className="">
-                              <span>
-                                Kembali
-                              </span>
+                              <span>Kembali</span>
                             </div>
                           </Link>
                         </div>

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 import {useState, useEffect} from 'react'
-import {moneyFormat} from "../../../helpers";
+// import {moneyFormat} from "../../../helpers/index";
 import { useRouter } from 'next/router'
 
 export default function Detailproduk() {
@@ -55,7 +55,7 @@ export default function Detailproduk() {
                   <div className="small mb-1">SKU: BST-498</div>
                   <h1 className="display-5 fw-bolder">{data.name}</h1>
                   <div className="fs-5 mb-5">
-                    <span className="text-decoration-line-through">{moneyFormat(data.price)}</span>
+                    <span className="text-decoration-line-through">{data.price}</span>
                     
                   </div>
                   <p className="lead">

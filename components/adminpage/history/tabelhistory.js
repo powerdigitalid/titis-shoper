@@ -126,7 +126,7 @@ export default function Tabelhistory() {
                             <td className="sorting_1">{ord.name}</td>
                             <td>{ord.phone}</td>
                             <td>
-                              <Link href="/admin/history/detail" className="btn btn-primary">Detail</Link>
+                              <Link href={`/admin/history/detail?id=${ord.id}`} className="btn btn-primary">Detail</Link>
                             </td>
                           </tr>
                           )) : <p className="text-center">Belum ada Yang Terkonfirmasi</p>}

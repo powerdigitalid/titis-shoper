@@ -8,9 +8,6 @@ export default function Produk() {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [desc, setDesc] = useState("");
 
 
   const handleProduct = ()=>{
@@ -93,7 +90,7 @@ export default function Produk() {
                     <a href="#">{prod.name}</a>
                   </h2>
                   <span className="price mb-3">{moneyFormat(prod.price)}</span>
-                  <a href={`/ladingpage/produk/detail/id=${prod.id}&name=${prod.name}&price=${prod.price}&desc=${prod.desc}&image=${prod.image}`}>
+                  <a href={`/ladingpage/produk/detail?id=${prod.id}`}>
                     <a className="btn btn-primary btn-addtocart">Detail</a>
                   </a>
                   <a href className="btn btn-primary ml-2 btn-sm" onClick={()=>handleAddBuy(prod.id, prod.price)} >Buy</a>

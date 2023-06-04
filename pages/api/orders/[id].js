@@ -1,17 +1,19 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "../../../libs/prisma.libs";
 
-export default async function handler(req, res) {
-  const prisma = new PrismaClient();
-  if (req.method === "POST") {
+export default function handler(req, res) {
     const { id } = req.query;
-    const updatedOrder = await prisma.order.update({
-      where: {
-        id: parseInt(id),
-      },
-      data: {
-        state: true,
-      },
-    });
-    res.status(200).json(updatedOrder);
-  }
+    if (req.method === 'GET') {
+        prisma.order.findFirst({
+            where: {
+                id: parseInt(id)
+            },
+            include:{
+                product: true
+            }
+        }).then((data) => {
+            res.status(200).json({ data })
+        }).catch((error) => {
+            res.status(400).json({ error })
+        })
+    }
 }
