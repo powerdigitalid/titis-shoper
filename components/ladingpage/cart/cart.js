@@ -38,6 +38,14 @@ export default function Cart() {
       });
   }
 
+  //handle data order clear ketika handle update dilakukan 
+  const handleClear = () => {
+    setName("");
+    setAddres("");
+    setPhone("");
+    setData([]);
+  };
+
   const handleUpdateOrder =(e)=>{
     e.preventDefault()
     fetch('/api/orders/update?state=unconfirmed', {
@@ -57,7 +65,9 @@ export default function Cart() {
           toast.success("Berhasil diupdate");
           router.push('/checkout')
         } else {
+          setLoading(false);
           toast.success("Berhasil Manambahkan data diri");
+          handleClear();
         }
       })
       .catch((err) => {
@@ -107,6 +117,9 @@ export default function Cart() {
                           Continue shopping
                         </a>
                       </h5>
+                      {/* <h6 className="mb-4">
+                        Status : {state}
+                      </h6> */}
                       <hr />
                       <div className="d-flex justify-content-between align-items-center mb-4">
                         <div>

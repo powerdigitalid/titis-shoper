@@ -9,31 +9,25 @@ export default function Detailhistory() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
   const router = useRouter()
+  const { id } = router.query
 
-  const handleDetailHistory = ()=>{
-    fetch(`/api/orders/${router.query.id}`, {
-      method: "GET",
-  })
-      .then((res) => res.json())
-      .then((res) => {
-          if (res.data) {
-              setData(res.data);
-          } else {
-              setData({});
-          }
-          setLoading(false);
-      })
-      .catch((err) => {
-          console.log(err);
-          setLoading(false);
-          setError(err);
-      });
+  const handleDetailPesan = async (id) => {
+    try {
+      const res = await fetch(`/api/orders/${id}`)
+      const json = await res.json()
+      setData(json.data)
+      setLoading(false)
+    } catch (error) {
+      setError(true)
+      setLoading(false)
+    }
   }
 
   useEffect(() => {
-    handleDetailHistory();
-  }, []);
-
+    if (id) {
+      handleDetailPesan(id)
+    }
+  }, [id])
   
   return (
     <div>
@@ -72,20 +66,20 @@ export default function Detailhistory() {
                             <div className="d-flex flex-row align-items-center">
                               <div>
                                 <img
-                                  src={data.product.image}
+                                  src={data.product?.image}
                                   className="img-fluid rounded-3 mr-3"
                                   alt="Shopping item"
                                   style={{ width: 65 }}
                                 />
                               </div>
                               <div className="ms-3">
-                                <h5>{data.product.name}</h5>
-                                <p className="small mb-0">{data.product.desc}</p>
+                                <h5>{data.product?.name}</h5>
+                                <p className="small mb-0">{data.product?.desc}</p>
                               </div>
                             </div>
                             <div className="d-flex flex-row align-items-center">
                               <div style={{ width: 130 }}>
-                                <h5 className="mb-0">{moneyFormat(data.product.price)}</h5>
+                                <h5 className="mb-0">Rp.{data.product?.price}</h5>
                               </div>
                               <a href="#!" style={{ color: "#cecece" }}>
                                 <i className="fas fa-trash-alt" />

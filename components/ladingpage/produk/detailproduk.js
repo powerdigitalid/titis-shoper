@@ -10,30 +10,25 @@ export default function Detailproduk() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
   const router = useRouter()
+  const { id } = router.query
 
-  const handleDetailProduct = ()=>{
-    fetch(`/api/produk/${router.query.id}`, {
-      method: "GET",
-  })
-      .then((res) => res.json())
-      .then((res) => {
-          if (res.data) {
-              setData(res.data);
-          } else {
-              setData({});
-          }
-          setLoading(false);
-      })
-      .catch((err) => {
-          console.log(err);
-          setLoading(false);
-          setError(err);
-      });
+  const handleDetailProduct = async (id) => {
+    try {
+      const res = await fetch(`/api/produk/${id}`)
+      const json = await res.json()
+      setData(json.data)
+      setLoading(false)
+    } catch (error) {
+      setError(true)
+      setLoading(false)
+    }
   }
 
   useEffect(() => {
-    handleDetailProduct();
-  }, []);
+    if (id) {
+      handleDetailProduct(id)
+    }
+  }, [id])
 
   
   return (

@@ -152,7 +152,7 @@ export default function Tabelpemesanan() {
                               aria-label="Position: activate to sort column ascending"
                               style={{ width: "80.031px" }}
                             >
-                              Status
+                              Alamat
                             </th>
                             <th
                               className="sorting"
@@ -173,7 +173,7 @@ export default function Tabelpemesanan() {
                           <tr role="row" className="odd" key={index}>
                             <td className="sorting_1">{ord.name}</td>
                             <td>{ord.phone}</td>
-                            <td>{ord.state}</td>
+                            <td>{ord.addres}</td>
                             <td>
                                 <Link href={`/admin/pemesanan/detail?id=${ord.id}`}> 
                                 <button className="btn btn-primary">Detail</button>

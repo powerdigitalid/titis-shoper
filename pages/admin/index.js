@@ -11,7 +11,7 @@ export default function Index() {
     }else{
       validateToken(getCookie('token')) ? null : window.location.href = "/login";
     }
-  }, [])
+  }, []) 
   return (
     <div>
       <Layout>

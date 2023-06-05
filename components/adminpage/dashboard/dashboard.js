@@ -2,31 +2,33 @@ import React from "react";
 import {useState, useEffect} from 'react'
 
 export default function Dashboard() {
-  const [dataCount, setDataCount] = useState({history:0, booking:0, orders:0});
+  const [datacount, setDatacount] = useState({history:0, booked:0, orders:0, users:0});
 
   const handleCount =()=>{
-    fetch('/api/dashboard', {
+    fetch("/api/dashboard", {
       method: "GET",
-      headers:{
+      headers: {
         "Content-Type": "application/json",
       },
     })
-    .then((res) => res.json())
-    .then((res) => {
-      if (res.data) {
-        return res.json();
-      } else {
-        throw new Error("Data not found");
+      .then((res) =>{
+        if(res.status==200){
+          return res.json()
+        }else{
+          throw new Error('Something went wrong');
+        }
       }
-    })
-    .then((res) => {
-      setDataCount(res.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+      )
+      .then((data) => {
+        setDatacount(data);
+      }
+      )
+      .catch((error) => {
+        console.log(error);
+      }
+      );
   }
-  
+
   useEffect(() => {
     handleCount();
   }, []);
@@ -56,7 +58,7 @@ export default function Dashboard() {
                       Total History
                     </div>
                     <div className="h5 mb-0 font-weight-bold text-gray-800">
-                      {dataCount.history}
+                      {datacount.history}
                     </div>
                     {/* <div className="mt-2 mb-0 text-muted text-xs">
                       <span className="text-success mr-2">
@@ -82,7 +84,7 @@ export default function Dashboard() {
                       Data Order
                     </div>
                     <div className="h5 mb-0 font-weight-bold text-gray-800">
-                      {dataCount.orders}
+                      {datacount.orders}
                     </div>
                     <div className="mt-2 mb-0 text-muted text-xs">
                       <span className="text-success mr-2">
@@ -108,7 +110,7 @@ export default function Dashboard() {
                       New User
                     </div>
                     <div className="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                      366
+                      {datacount.users}
                     </div>
                     <div className="mt-2 mb-0 text-muted text-xs">
                       <span className="text-success mr-2">
@@ -134,7 +136,7 @@ export default function Dashboard() {
                       Pending Requests
                     </div>
                     <div className="h5 mb-0 font-weight-bold text-gray-800">
-                      {dataCount.booking}
+                      {datacount.booked}
                     </div>
                     <div className="mt-2 mb-0 text-muted text-xs">
                       <span className="text-danger mr-2">

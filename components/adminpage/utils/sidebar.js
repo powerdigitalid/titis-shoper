@@ -33,7 +33,7 @@ export default function Sidebar() {
         </a>
         
         <li className="nav-item active">
-          <a className="nav-link" href="index.html">
+          <a className="nav-link" href="/admin">
             <i className="fas fa-fw fa-tachometer-alt" />
             <span>Dashboard</span>
           </a>

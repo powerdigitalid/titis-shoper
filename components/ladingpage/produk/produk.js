@@ -1,11 +1,13 @@
 import Link from "next/link";
 import React from "react";
+import {useRouter} from 'next/router';
 import {useState, useEffect} from "react";
 import {moneyFormat} from "../../../helpers";
 import { toast } from "react-toastify";
 
 export default function Produk() {
   const [data, setData] = useState([])
+  const router = useRouter();
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
 
@@ -50,8 +52,10 @@ export default function Produk() {
       .then((res) => {
         if (res.data) {
           toast.success("Berhasil ditambahkan ke keranjang");
+          router.push("/landingpage/cart/cart")
         } else {
           toast.success("Berhasil ditambahkan ke keranjang");
+          router.push("/ladingpage/cart?state=unconfirmed")
         }
       })
       .catch((err) => {
