@@ -1,6 +1,7 @@
 import { prisma } from "../../../libs/prisma.libs";
 import path from "path";
 import multer from "multer";
+import fs from "fs";
 
 export const config = {
   api: {
@@ -22,40 +23,31 @@ const upload = multer({
   },
 });
 // update product from tabel product by id 
-export default async (req, res) => {
-  try {
-    const {id, name, price, desc} = req.body;
-    const product = await prisma.product.findUnique({
-      where: {
-        id: parseInt(id),
-      },
-    });
-    if (!product) {
-      return res.status(404).json({ error: "Product not found" });
-    }
+export default async function handler(req, res) {
+  //update product by id
+  if (req.method === "PUT") {
     upload.single("image")(req, res, async (err) => {
       if (err) {
         return res.status(400).json({ error: err.message });
       }
-      const image = req.file ? `/upload/${req.file.filename}` : product.image;
-      const productUpdate = await prisma.product.update({
+      const { id } = req.query; 
+      const { name, price, desc } = req.body;
+      const image = `/upload/${req.file.filename}`;
+      const product = await prisma.product.update({
         where: {
           id: parseInt(id),
         },
         data: {
-          name,
+          name, 
           price: parseInt(price),
           desc,
           image,
         },
       });
-      //jika image baru , delete image lama
-      if (req.file && product.image !== "/upload/default.png") {
-        fs.unlinkSync(`./public${product.image}`);
-      }
-      res.json(productUpdate);
+      if(product.image){
+        fs.unlinkSync(`.${product.image}`);
+      } 
+      return res.status(200).json({data:product});
     });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
   }
-};
+}

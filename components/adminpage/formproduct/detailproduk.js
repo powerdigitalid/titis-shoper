@@ -1,10 +1,39 @@
-import Link from "next/link";
-import React from "react";
+import Link from 'next/link'
+import React from 'react'
+import {useState, useEffect} from 'react'
+// import {moneyFormat} from "../../../helpers/index";
+import { useRouter } from 'next/router'
 
 export default function Detailproduk() {
+  //detail product by id product
+  const [data, setData] = useState({});
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
+  const router = useRouter()
+  const { id } = router.query
+
+  const handleDetailProduct = async (id) => {
+    try {
+      const res = await fetch(`/api/produk/${id}`)
+      const json = await res.json()
+      setData(json.data)
+      setLoading(false)
+    } catch (error) {
+      setError(true)
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    if (id) {
+      handleDetailProduct(id)
+    }
+  }, [id])
+
+  
   return (
     <div>
-      <div className="card author-box card-primary">
+        <div className="card author-box card-primary">
         <div className="card-body">
           <section className="">
             <div className="container ">
@@ -12,22 +41,20 @@ export default function Detailproduk() {
                 <div className="col-md-6"> 
                   <img
                     className="card-img-top"
-                    src="/dist/images/item-1.jpg"
+                    src={data.image}
                     alt="..."
                   />
                 </div>
+
                 <div className="col-md-6">
                   <div className="small mb-1">SKU: BST-498</div>
-                  <h1 className="display-5 fw-bolder">Shop item template</h1>
+                  <h1 className="display-5 fw-bolder">{data.name}</h1>
                   <div className="fs-5 mb-5">
-                    <span className="text-decoration-line-through">$45.00</span>
-                    <span>$40.00</span>
+                    <span className="text-decoration-line-through">{data.price}</span>
+                    
                   </div>
                   <p className="lead">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Praesentium at dolorem quidem modi. Nam sequi consequatur
-                    obcaecati excepturi alias magni, accusamus eius blanditiis
-                    delectus ipsam minima ea iste laborum vero?
+                    {data.desc}
                   </p>
                   <div className="d-flex">
                     <Link
@@ -44,5 +71,5 @@ export default function Detailproduk() {
         </div>
       </div>
     </div>
-  );
+  )
 }

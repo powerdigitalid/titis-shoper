@@ -82,8 +82,8 @@ export default function Allproduct() {
                       <span className="price">{moneyFormat(prod.price)}</span>
                     </div>
                     <div>
-                      <Link href="/admin/produk/detail" className="btn btn-primary btn-sm">Detail</Link>
-                      <Link href="/admin/produk/editproduk" className="btn btn-primary btn-sm">Edit</Link>
+                      <Link href={`/admin/produk/detail?id=${prod.id}`} className="btn btn-primary btn-sm">Detail</Link>
+                      <Link href={`/admin/produk/editproduk?id=${prod.id}`} className="btn btn-primary btn-sm">Edit</Link>
                       <button className="btn btn-primary btn-sm" onClick={()=>handleDelete(prod._id)}>Delete</button>
                     </div>
                   </div>
