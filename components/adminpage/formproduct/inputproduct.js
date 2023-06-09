@@ -49,7 +49,7 @@ export default function Inputproduct() {
         <div className="card-body">
           <div className="col-12">
             <div className="">
-              <h2>Tambahkan Product</h2>
+              <h2>Tambahkan Produk</h2>
             </div>
           </div>
           <form onSubmit={handleAddProduct}>

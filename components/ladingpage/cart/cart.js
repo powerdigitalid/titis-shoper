@@ -114,7 +114,7 @@ export default function Cart() {
                       <h5 className="mb-3">
                         <a href="#!" className="text-body">
                           <i className="fas fa-long-arrow-alt-left me-2" />
-                          Continue shopping
+                          Checkout
                         </a>
                       </h5>
                       {/* <h6 className="mb-4">
@@ -123,8 +123,8 @@ export default function Cart() {
                       <hr />
                       <div className="d-flex justify-content-between align-items-center mb-4">
                         <div>
-                          <p className="mb-1">Shopping cart</p>
-                          <p className="mb-0">Kamu memiliki {data.length} Barang</p>
+                          <p className="mb-1">Isikan Data Pemesan</p>
+                          {/* <p className="mb-0">Kamu memiliki {data.length} Barang</p> */}
                         </div>
                         <div>
                           <p className="mb-0">
@@ -157,7 +157,7 @@ export default function Cart() {
                               <div style={{ width: 130 }}>
                                 <h5 className="mb-0">{moneyFormat(ord.product.price)}</h5>
                               </div>
-                              <div className="d-flex align-items-center btn btn-secondary">
+                              <div className="d-flex align-items-center btn btn-outline-dark">
                                 <a href="#!" className="text-primary " onClick={(e) => handleDelete(e, ord.id)}>
                                   X
                                 </a>
@@ -172,15 +172,9 @@ export default function Cart() {
                       <div className="card bg-primary text-white rounded-3">
                         <div className="card-body">
                           <div className="d-flex justify-content-between align-items-center mb-4">
-                            <h5 className="mb-0">Card details</h5>
-                            <img
-                              src="/dist/images/item-4.jpg"
-                              className="img-fluid rounded-3"
-                              style={{ width: 45 }}
-                              alt="Avatar"
-                            />
+                            <h5 className="mb-0">Data Pemesan</h5>
                           </div>
-                          <p className="small mb-2">Card type</p>
+                          <p className="small mb-2">Pembayaran Bisa Melalui Tranfer BANK</p>
                           <a href="#!" type="submit" className="text-white ml-2">
                             <i className="fa-2x me-2" />
                             - BCA
@@ -199,50 +193,50 @@ export default function Cart() {
                           </a>
                           <form className="mt-4" onSubmit={handleUpdateOrder}>
                             <div className="form-outline form-white mb-4">
+                              <label className="form-label" htmlFor="typeName">
+                                Nama
+                              </label>
                               <input
                                 type="text"
                                 id="typeName"
                                 className="form-control form-control-lg"
                                 siez={17}
-                                placeholder="Name"
+                                placeholder="Nama Pemesan"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                               />
-                              <label className="form-label" htmlFor="typeName">
-                                Nama
-                              </label>
                             </div>
                             <div className="form-outline form-white mb-4">
+                              <label className="form-label" htmlFor="typeText">
+                                No WhatsApp
+                              </label>
                               <input
                                 type="text"
                                 id="typeText"
                                 className="form-control form-control-lg"
                                 siez={17}
-                                placeholder="08123456789"
+                                placeholder="08xxxxxxxxxx"
                                 minLength={11}
                                 maxLength={19}
                                 value={phone}
                                 onChange={(e) => setPhone(e.target.value)}
                               />
-                              <label className="form-label" htmlFor="typeText">
-                                No Wa
-                              </label>
                             </div>
                             <div className="form-outline form-white mb-4">
+                              <label className="form-label" htmlFor="typeText">
+                                Alamat
+                              </label>
                               <input
                                 type="text"
                                 id="typeText"
                                 className="form-control form-control-lg"
                                 siez={17}
-                                placeholder="Jl KH Hasyim Ashari"
+                                placeholder="Masukan alamat"
                                 minLength={19}
                                 maxLength={19}
                                 value={addres}
                                 onChange={(e) => setAddres(e.target.value)}
                               />
-                              <label className="form-label" htmlFor="typeText">
-                                Alamat
-                              </label>
                             </div>
                             {/* <input type="hidden" name="id" value={data.id} /> */}
                             <button
@@ -263,14 +257,13 @@ export default function Cart() {
                             <p className="mb-2">Rp. 300.000</p>
                           </div> */}
                           <div className="d-flex justify-content-between">
-                            <p className="mb-2">Shipping</p>
+                            <p className="mb-2">Ongkir Luar Banyuwangi</p>
                             <p className="mb-2">Rp. 20.000</p>
                           </div>
                           <div className="d-flex justify-content-between mb-4">
                             <p className="mb-2">Total</p>
                             <p className="mb-2">{moneyFormat(total)}</p>
                           </div>
-                          
                         </div>
                       </div>
                     </div>

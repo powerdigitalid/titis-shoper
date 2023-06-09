@@ -20,8 +20,8 @@ export default function Banner() {
                           <span>New trending Coffe</span>
                         </p>
                         <p>
-                          <a href="#" className="btn btn-primary">
-                            Arabica Coffe
+                          <a href="/#aboutProduct" className="btn btn-primary">
+                            Selanjutnya
                           </a>
                         </p>
                       </div>

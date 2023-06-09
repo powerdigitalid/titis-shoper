@@ -47,7 +47,6 @@ export default function Detailproduk() {
                 </div>
 
                 <div className="col-md-6">
-                  <div className="small mb-1">SKU: BST-498</div>
                   <h1 className="display-5 fw-bolder">{data.name}</h1>
                   <div className="fs-5 mb-5">
                     <span className="text-decoration-line-through">{data.price}</span>

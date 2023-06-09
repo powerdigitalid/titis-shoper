@@ -86,12 +86,12 @@ export default function Dashboard() {
                     <div className="h5 mb-0 font-weight-bold text-gray-800">
                       {datacount.orders}
                     </div>
-                    <div className="mt-2 mb-0 text-muted text-xs">
+                    {/* <div className="mt-2 mb-0 text-muted text-xs">
                       <span className="text-success mr-2">
                         <i className="fas fa-arrow-up" /> 12%
                       </span>
                       <span>Since last years</span>
-                    </div>
+                    </div> */}
                   </div>
                   <div className="col-auto">
                     <i className="fas fa-shopping-cart fa-2x text-success" />
@@ -107,17 +107,17 @@ export default function Dashboard() {
                 <div className="row no-gutters align-items-center">
                   <div className="col mr-2">
                     <div className="text-xs font-weight-bold text-uppercase mb-1">
-                      New User
+                     Users
                     </div>
                     <div className="h5 mb-0 mr-3 font-weight-bold text-gray-800">
                       {datacount.users}
                     </div>
-                    <div className="mt-2 mb-0 text-muted text-xs">
+                    {/* <div className="mt-2 mb-0 text-muted text-xs">
                       <span className="text-success mr-2">
                         <i className="fas fa-arrow-up" /> 20.4%
                       </span>
                       <span>Since last month</span>
-                    </div>
+                    </div> */}
                   </div>
                   <div className="col-auto">
                     <i className="fas fa-users fa-2x text-info" />
@@ -138,12 +138,12 @@ export default function Dashboard() {
                     <div className="h5 mb-0 font-weight-bold text-gray-800">
                       {datacount.booked}
                     </div>
-                    <div className="mt-2 mb-0 text-muted text-xs">
+                    {/* <div className="mt-2 mb-0 text-muted text-xs">
                       <span className="text-danger mr-2">
                         <i className="fas fa-arrow-down" /> 1.10%
                       </span>
                       <span>Since yesterday</span>
-                    </div>
+                    </div> */}
                   </div>
                   <div className="col-auto">
                     <i className="fas fa-comments fa-2x text-warning" />

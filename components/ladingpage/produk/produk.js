@@ -51,10 +51,10 @@ export default function Produk() {
       .then((res) => res.json())
       .then((res) => {
         if (res.data) {
-          toast.success("Berhasil ditambahkan ke keranjang");
-          router.push("/landingpage/cart/cart")
+          toast.success("Berhasil, Lanjut Checkout");
+          router.push("/ladingpage/cart?state=unconfirmed")
         } else {
-          toast.success("Berhasil ditambahkan ke keranjang");
+          toast.success("Berhasil, Lanjut Checkout");
           router.push("/ladingpage/cart?state=unconfirmed")
         }
       })
@@ -70,12 +70,12 @@ export default function Produk() {
 }, []);
 
   return (
-    <div>
+    <div id="product">
       <div className="colorlib-product">
         <div className="container">
           <div className="row">
             <div className="col-sm-8 offset-sm-2 text-center colorlib-heading">
-              <h2>Best Sellers</h2>
+              <h2>Product</h2>
             </div>
           </div>
           <div className="row row-pb-md">
@@ -95,24 +95,15 @@ export default function Produk() {
                   </h2>
                   <span className="price mb-3">{moneyFormat(prod.price)}</span>
                   <a href={`/ladingpage/produk/detail?id=${prod.id}`}>
-                    <a className="btn btn-primary btn-addtocart">Detail</a>
+                    <a className="btn btn-outline-dark">Detail</a>
                   </a>
-                  <a href className="btn btn-primary ml-2 btn-sm" onClick={()=>handleAddBuy(prod.id, prod.price)} >Buy</a>
+                  <a href className="btn btn-outline-dark ml-2 btn-sm" onClick={()=>handleAddBuy(prod.id, prod.price)} >Beli</a>
                 </div>
               </div>
             </div>
-            )) : <h3 className="text-center">Belum ada produk</h3>}
+            )) : <h3 className="text-center text-danger">Belum ada produk</h3>}
             
             <div className="w-100" />
-          </div>
-          <div className="row">
-            <div className="col-md-12 text-center">
-              <p>
-                <a href="#" className="btn btn-primary btn-lg">
-                  Shop All Products
-                </a>
-              </p>
-            </div>
           </div>
         </div>
       </div>

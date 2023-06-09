@@ -8,9 +8,9 @@ export default function Intro() {
           <div className="container">
             <div className="row">
               <div className="col-sm-12 text-center">
-                <h2 className="intro">
-                  Kami meiliki 2 produk kopi yang berbeda, yaitu Arabica dan Robusta.
-                  Yang mana Arabica memiliki rasa yang lebih halus dan Robusta memiliki rasa yang lebih kuat.
+                <h2 className="intro" id="aboutProduct">
+                  Kami memiliki 2 produk kopi yang berbeda, yaitu Arabica dan Robusta. yang digiling dengan mesin penggiling kopi terbaik. dipanganng dengan teknik warm roasted.
+                  Yang melahirkan rasa yang lebih kuat dan nikmat.
                 </h2>
               </div>
             </div>

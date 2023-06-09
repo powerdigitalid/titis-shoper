@@ -46,27 +46,6 @@ export default function Navbar() {
               </form>
             </div>
           </li>
-          <div className="topbar-divider d-none d-sm-block" />
-          <li className="nav-item dropdown no-arrow">
-            <a
-              className="nav-link dropdown-toggle"
-              href="#"
-              id="userDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <img
-                className="img-profile rounded-circle"
-                src="/dist/admin/img/boy.png"
-                style={{ maxWidth: 60 }}
-              />
-              <span className="ml-2 d-none d-lg-inline text-white small">
-                Maman Ketoprak
-              </span>
-            </a>
-          </li>
         </ul>
       </nav>
     </div>

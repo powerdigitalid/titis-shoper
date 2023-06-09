@@ -77,19 +77,10 @@ const handleOrder = (product) => {
                     {prod.price}
                   </span>
                 </div>
-                <button className="btn btn-primary btn-addtocart" onClick={() => handleOrder(prod)}> Add to Cart</button>
+                <button className="btn btn-dark btn-addtocart" onClick={() => handleOrder(prod)}> Checkout</button>
               </div>
             </div>
             )) : <h3 className="text-center">Belum ada produk</h3>}
-          </div>
-          <div className="row">
-            <div className="col-md-12 text-center">
-              <p>
-                <a href="#" className="btn btn-primary btn-lg">
-                  Shop All Products
-                </a>
-              </p>
-            </div>
           </div>
         </div>
       </div>

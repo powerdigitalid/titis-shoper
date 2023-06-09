@@ -37,7 +37,7 @@ const Gototop = () => {
           className="back-to-top"
           onClick={scrollToTop}
         >
-          <span>UP</span>
+          <span><i className="icon-arrow-up" /></span>
         </div>
       )}
 
@@ -48,7 +48,7 @@ const Gototop = () => {
           right: 30px;
           width: 50px;
           height: 50px;
-          background-color: #808080;
+          background-color: #3c8d0d;
           color: #fff;
           border-radius: 10%;
           display: flex;

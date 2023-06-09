@@ -96,21 +96,6 @@ export default function Tabelpemesanan() {
                   className="dataTables_wrapper dt-bootstrap4"
                 >
                   <div className="row">
-                    <div className="col-sm-12 col-md-6">
-                      <div id="dataTable_filter" className="dataTables_filter">
-                        <label>
-                          Search:
-                          <input
-                            type="search"
-                            className="form-control form-control-sm"
-                            placeholder
-                            aria-controls="dataTable"
-                          />
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row">
                     <div className="col-sm-12">
                       <table
                         className="table align-items-center table-flush dataTable"

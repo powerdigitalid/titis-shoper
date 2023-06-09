@@ -42,23 +42,6 @@ export default function Navbar() {
                   <a href="index.html">Titis Shoper</a>
                 </div>
               </div>
-              <div className="col-sm-5 col-md-3">
-                <form action="#" className="search-wrap">
-                  <div className="form-group">
-                    <input
-                      type="search"
-                      className="form-control search"
-                      placeholder="Search"
-                    />
-                    <button
-                      className="btn btn-primary submit-search text-center"
-                      type="submit"
-                    >
-                      <i className="icon-search" />
-                    </button>
-                  </div>
-                </form>
-              </div>
             </div>
             <div className="row">
               <div className="col-sm-12 text-left menu-1">
@@ -67,19 +50,19 @@ export default function Navbar() {
                     <a href="/">Home</a>
                   </li>
                   <li className="has-dropdown">
-                    <a href="men.html">Produk</a>
+                    <a href="/#product">Produk</a>
                   </li>
                   <li>
-                    <a href="about.html">Tentang Kami</a>
+                    <a href="/#aboutProduct">Tentang Produk</a>
                   </li>
                   <li>
-                    <a href="contact.html">Contact</a>
+                    <a href="/#footer">Contact</a>
                   </li>
-                  <li className="cart">
+                  {/* <li className="cart">
                     <a href={`ladingpage/cart?state=${state}`}>
                       <i className="icon-shopping-cart" /> Cart [{order.length}]
                     </a>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </div>
@@ -88,23 +71,14 @@ export default function Navbar() {
         <div className="sale">
           <div className="container">
             <div className="row">
-              <div className="col-sm-8 offset-sm-2 text-center">
+              <div className="col">
                 <div className="row">
                   <div className="owl-carousel2">
                     <div className="item">
                       <div className="col">
                         <h3>
                           <a href="#">
-                            25% off (Almost) Everything! Use Code: Summer Sale
-                          </a>
-                        </h3>
-                      </div>
-                    </div>
-                    <div className="item">
-                      <div className="col">
-                        <h3>
-                          <a href="#">
-                            Our biggest sale yet 50% off all summer shoes
+                            Gratis Ongkir Untuk Wilayah Banyuwangi, Buruan Jangan Sampai Kehabisan !!
                           </a>
                         </h3>
                       </div>
