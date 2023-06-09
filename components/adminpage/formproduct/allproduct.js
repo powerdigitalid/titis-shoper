@@ -84,7 +84,7 @@ export default function Allproduct() {
                     <div>
                       <Link href={`/admin/produk/detail?id=${prod.id}`} className="btn btn-primary btn-sm">Detail</Link>
                       <Link href={`/admin/produk/editproduk?id=${prod.id}`} className="btn btn-primary btn-sm">Edit</Link>
-                      <button className="btn btn-primary btn-sm" onClick={()=>handleDelete(prod._id)}>Delete</button>
+                      <button className="btn btn-primary btn-sm" onClick={()=>handleDelete(prod.id)}>Delete</button>
                     </div>
                   </div>
                 </div>
