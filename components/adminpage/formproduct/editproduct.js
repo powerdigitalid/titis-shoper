@@ -39,32 +39,28 @@ export default function Editproduct() {
   // const handleUpdateImg = (e) => {
   //   setImage(e.target.files[0])
   // }
-
-  const handleUpdateProduct = (e) => {
+  const handleUpdateProduct = async (e) => {
     e.preventDefault()
     const data = new FormData()
+    data.append('image', image)
     data.append('name', name)
     data.append('price', price)
-    data.append('image', image)
     data.append('desc', desc)
-    setLoading(true)
-    //api update product by id
-    fetch(`/api/produk/update?id=${router.query.id}`, {
-      method: 'PUT',
-      body: data,
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        toast.success('Produk berhasil diupdate')
-        router.push('/admin/produk')
-
+    try {
+      const res = await fetch(`/api/produk/update?id=${id}`, {
+        method: 'PUT',
+        body: data,
       })
-      .catch((err) => {
-        console.log(err)
-        setLoading(false)
-        toast.error('Produk gagal diupdate')
-      })
+      const json = await res.json()
+      if (!res.ok) throw Error(json.message)
+      toast.success('Produk berhasil diupdate')
+      router.push('/admin/produk')
+      console.log(json)
+    } catch (error) {
+      toast.error(error.message)
+    }
   }
+
 
 
   return (
@@ -79,9 +75,8 @@ export default function Editproduct() {
           <form onSubmit={handleUpdateProduct}>
             <div className="author-box-left">
               <img
-                alt="image"
-                value={image}
-                src={image}
+                alt="Success Uploaded"
+                src={`http://localhost:3000/${image}`}
                 className="m-2 author-box-picture"
                 style={{ width: "150px", height: "150px" }}
               />

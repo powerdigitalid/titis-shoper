@@ -1,7 +1,7 @@
 import React from "react";
-import {useState, useEffect} from "react";
-import {toast} from 'react-toastify';
-import {useRouter} from 'next/router';
+import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 export default function Inputproduct() {
   const [name, setName] = useState("");
@@ -11,11 +11,11 @@ export default function Inputproduct() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const handleImgChangge =(e)=>{
+  const handleImgChangge = (e) => {
     setImage(e.target.files[0]);
   };
 
-  const handleAddProduct =(e)=>{
+  const handleAddProduct = (e) => {
     e.preventDefault();
     const data = new FormData();
     data.append("name", name);
@@ -42,7 +42,7 @@ export default function Inputproduct() {
         setLoading(false);
         toast.error("Produk gagal ditambahkan");
       });
-  }
+  };
   return (
     <div>
       <div className="card author-box card-primary">
@@ -56,7 +56,7 @@ export default function Inputproduct() {
             <div className="author-box-left">
               <img
                 alt="image"
-                src={`https://ui-avatars.com/api/?name=${name}&background=random&length=1&rounded=true&size=128`}
+                src={`https://ui-avatars.com/api/?image=${image}&background=0D8ABC&color=fff&size=128`}
                 className="m-2 author-box-picture"
                 style={{ width: "150px", height: "150px" }}
               />
@@ -65,11 +65,11 @@ export default function Inputproduct() {
                 <input
                   type="file"
                   className="custom-file-input form-control-sm"
-                  id="customFile"
+                  id="file-upload"
                   onChange={handleImgChangge}
                 />
-                <label className="custom-file-label" htmlFor="customFile">
-                  Choose file
+                <label className="custom-file-label" htmlFor="file-upload">
+                  Choose File
                 </label>
               </div>
             </div>
