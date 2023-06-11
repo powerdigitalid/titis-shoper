@@ -31,8 +31,8 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: err.message });
       }
       const { id } = req.query; 
-      const { name, price, desc } = req.body;
-      const image = `/upload/${req.file.filename}`;
+      const { name, price, desc, image} = req.body; 
+      // const image = `/upload/${req.file.filename}`;
       const product = await prisma.product.update({
         where: {
           id: parseInt(id),

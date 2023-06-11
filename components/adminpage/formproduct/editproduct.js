@@ -5,17 +5,40 @@ import { toast } from 'react-toastify'
 import {useRouter} from 'next/router'
 
 export default function Editproduct() {
-  const [data, setData] = useState({})
+  const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
   const [image, setImage] = useState(null)
   const [name, setName] = useState('')
   const [price, setPrice] = useState('')
   const [desc, setDesc] = useState('')
   const router = useRouter()
+  const { id } = router.query
 
-  const handleUpdateImg = (e) => {
-    setImage(e.target.files[0])
+  const handleEditProd = async (id) => {
+    try {
+      const res = await fetch(`/api/produk/${id}`)
+      const json = await res.json()
+      setData(json.data)
+      setName(json.data.name)
+      setPrice(json.data.price)
+      setDesc(json.data.desc)
+      setImage(json.data.image)
+      setLoading(false)
+    } catch (error) {
+      setError(true)
+      setLoading(false)
+    }
   }
+
+  useEffect(() => {
+    if (id) {
+      handleEditProd(id)
+    }
+  }, [id])
+
+  // const handleUpdateImg = (e) => {
+  //   setImage(e.target.files[0])
+  // }
 
   const handleUpdateProduct = (e) => {
     e.preventDefault()
@@ -32,9 +55,9 @@ export default function Editproduct() {
     })
       .then((res) => res.json())
       .then((res) => {
-        setLoading(false)
         toast.success('Produk berhasil diupdate')
         router.push('/admin/produk')
+
       })
       .catch((err) => {
         console.log(err)
@@ -57,7 +80,8 @@ export default function Editproduct() {
             <div className="author-box-left">
               <img
                 alt="image"
-                src="/dist/images/item-1.jpg"
+                value={image}
+                src={image}
                 className="m-2 author-box-picture"
                 style={{ width: "150px", height: "150px" }}
               />
@@ -67,7 +91,7 @@ export default function Editproduct() {
                   type="file"
                   className="custom-file-input form-control-sm"
                   id="customFile"
-                  onChange={handleUpdateImg}
+                  onChange={(e) => setImage(e.target.files[0])}
                 />
                 <label className="custom-file-label" htmlFor="customFile">
                   Choose file
