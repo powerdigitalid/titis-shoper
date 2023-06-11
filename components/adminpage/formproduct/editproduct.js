@@ -7,7 +7,7 @@ import {useRouter} from 'next/router'
 export default function Editproduct() {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
-  const [image, setImage] = useState(null)
+  const [image, setImage] = useState('')
   const [name, setName] = useState('')
   const [price, setPrice] = useState('')
   const [desc, setDesc] = useState('')
