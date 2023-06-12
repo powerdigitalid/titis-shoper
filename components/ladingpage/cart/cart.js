@@ -200,10 +200,10 @@ export default function Cart() {
                                 type="text"
                                 id="typeName"
                                 className="form-control form-control-lg"
-                                siez={17}
                                 placeholder="Nama Pemesan"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
+                                required
                               />
                             </div>
                             <div className="form-outline form-white mb-4">
@@ -214,11 +214,10 @@ export default function Cart() {
                                 type="text"
                                 id="typeText"
                                 className="form-control form-control-lg"
-                                siez={17}
                                 placeholder="08xxxxxxxxxx"
-                                minLength={11}
-                                maxLength={19}
+                                minLength={10}
                                 value={phone}
+                                required
                                 onChange={(e) => setPhone(e.target.value)}
                               />
                             </div>
@@ -230,11 +229,10 @@ export default function Cart() {
                                 type="text"
                                 id="typeText"
                                 className="form-control form-control-lg"
-                                siez={17}
                                 placeholder="Masukan alamat"
-                                minLength={19}
-                                maxLength={19}
+                                minLength={3}
                                 value={addres}
+                                required
                                 onChange={(e) => setAddres(e.target.value)}
                               />
                             </div>
