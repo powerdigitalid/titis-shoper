@@ -7,12 +7,37 @@ import {useRouter} from 'next/router'
 export default function Editproduct() {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
-  const [image, setImage] = useState(null)
+  const [image, setImage] = useState('')
   const [name, setName] = useState('')
   const [price, setPrice] = useState('')
   const [desc, setDesc] = useState('')
+  const [filename, setFilename] = useState('')
   const router = useRouter()
   const { id } = router.query
+
+
+  const handleUpload = (event) => {
+    setImage(event.target.files[0]);
+    try {
+      if (!event.target.files || event.target.files.length == 0) {
+        throw new Error('Pilih file untuk diunggah!')
+      }
+      const file = event.target.files[0]
+      const fileExt = file.name.split('.').pop()
+      setFilename(file.name)
+      console.log(fileExt)
+      const parse = Papa.parse(file, {
+        delimiter: ";",
+        header: true,
+        complete: (res) => {
+          setParsedData(res)
+        }
+      })
+    } catch (error) {
+      // toast.error("Image gagal diupload");
+      console.error(error)
+    }
+  }
 
   const handleEditProd = async (id) => {
     try {
@@ -75,7 +100,7 @@ export default function Editproduct() {
           <form onSubmit={handleUpdateProduct}>
             <div className="author-box-left">
               <img
-                alt="Success Uploaded"
+                alt="image"
                 src={`http://localhost:3000/${image}`}
                 className="m-2 author-box-picture"
                 style={{ width: "150px", height: "150px" }}
@@ -86,10 +111,10 @@ export default function Editproduct() {
                   type="file"
                   className="custom-file-input form-control-sm"
                   id="customFile"
-                  onChange={(e) => setImage(e.target.files[0])}
+                  onChange={handleUpload}
                 />
                 <label className="custom-file-label" htmlFor="customFile">
-                  Choose file
+                  {filename}
                 </label>
               </div>
             </div>
