@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 import {useState, useEffect} from 'react'
-import {moneyFormat} from "../../../helpers/index";
+// import {moneyFormat} from "../../../helpers";
 import { useRouter } from 'next/router'
 
 export default function Detailpemesanan() {
@@ -79,7 +79,7 @@ export default function Detailpemesanan() {
                             </div>
                             <div className="d-flex flex-row align-items-center">
                               <div style={{ width: 130 }}>
-                                <h5 className="mb-0">{moneyFormat(data.product?.price)}</h5>
+                                <h5 className="mb-0">Rp.{data.product?.price}</h5>
                               </div>
                               <a href="#!" style={{ color: "#cecece" }}>
                                 <i className="fas fa-trash-alt" />
