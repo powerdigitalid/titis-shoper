@@ -1,3 +1,4 @@
 {
+  "browser": true,"node": true,"es6": true, "env": true,
   "extends": "next/core-web-vitals"
 }
