@@ -19,7 +19,7 @@ export default function Sidebar() {
   return (
     <div>
       <ul
-        className="navbar-nav sidebar sidebar-light accordion"
+        className="navbar-nav sidebar sidebar-light accordion border-right border-danger"
         id="accordionSidebar"
       >
         <a
