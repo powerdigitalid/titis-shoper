@@ -19,9 +19,14 @@ import '../public/dist/admin/css/ruang-admin.min.css'
 import 'react-toastify/dist/ReactToastify.min.css';
 import { ToastContainer } from 'react-toastify';
 
+//session provider
+import { SessionProvider } from "next-auth/react";
+
 export default function App({ Component, pageProps }) {
   return <>
-  <Component {...pageProps} />
+  <SessionProvider session={pageProps.session}>
+      <Component {...pageProps} />
+    </SessionProvider>
   <ToastContainer />
   </>
 }

@@ -3,7 +3,7 @@ import { prisma } from "../../../libs/prisma.libs";
 export default async function handler(req, res) {
     if (req.method === "POST") {
       try {
-        const { name, date, total, productId, addres, phone } = req.body;
+        const { name, date, total, productId, addres, phone, email } = req.body;
   
         const order = await prisma.order.create({
           data: {
@@ -17,6 +17,7 @@ export default async function handler(req, res) {
             },
             addres,
             phone,
+            email,
           },
         });
   

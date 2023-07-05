@@ -33,6 +33,7 @@ model Order {
   name      String?
   date      String
   total     Float?
+  email     String?
   addres    String?
   phone     String?
   product   Product @relation(fields: [productId], references: [id])
