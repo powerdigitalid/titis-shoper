@@ -164,7 +164,10 @@ export default function Cart() {
                                 </div>
                             </div>
                           </div>
-                        )) : <p className="text-center">Belum ada Produk Yang Dipilih</p>}
+                        )) : 
+                        <div className="text-center">
+                          <a href="https://wa.me/+6287851772114" className='btn btn-success' target="_blank">Hubungi Admin</a>
+                        </div>}
                         </div>
                       </div>
                     </div>
