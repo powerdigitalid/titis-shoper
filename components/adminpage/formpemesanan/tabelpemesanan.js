@@ -3,14 +3,13 @@ import React from "react";
 import {useState, useEffect} from 'react'
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
+import dynamic from "next/dynamic";
 
-export default function Tabelpemesanan() {
+function Tabelpemesanan() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
   const router = useRouter();
-  
-
 
   const handleTabelOrder = ()=>{
     fetch('/api/orders/orderCart?state=uncormirmed', {
@@ -75,7 +74,7 @@ export default function Tabelpemesanan() {
         })
         .catch((err) => {
             console.log(err);
-            toast.error("Terjadi kesalahan saat menghapus data");
+            // toast.error("Terjadi kesalahan saat menghapus data");
         });
   };
 
@@ -241,3 +240,4 @@ export default function Tabelpemesanan() {
     </div>
   );
 };
+export default dynamic(() => Promise.resolve(Tabelpemesanan), {ssr: false})
