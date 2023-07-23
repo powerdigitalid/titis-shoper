@@ -125,7 +125,7 @@ export default function Editproduct() {
               <div className="author-box-name">
                 <div className="form-group">
                   <div className="form-row">
-                    <div className="form-group col-sm-6">
+                    <div className="form-group col-4">
                       <label>Kode Produk</label>
                       <input
                         type="text"
@@ -135,7 +135,7 @@ export default function Editproduct() {
                         onChange={(e) => setKodeProduct(e.target.value)}
                       />
                     </div>
-                    <div className="form-group col-sm-6">
+                    <div className="form-group col-4">
                       <label>Nama Produk</label>
                       <input
                         type="text"
@@ -146,7 +146,7 @@ export default function Editproduct() {
 
                       />
                     </div>
-                    <div className="form-group col-sm-6">
+                    <div className="form-group col-4">
                       <label>Harga</label>
                       <div className="input-group input-group-sm">
                         <div className="input-group-prepend">

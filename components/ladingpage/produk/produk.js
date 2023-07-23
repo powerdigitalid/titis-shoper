@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { moneyFormat } from "../../../helpers";
 import { toast } from "react-toastify";
@@ -14,7 +14,7 @@ export default function Produk() {
   const { data: session, status } = useSession();
 
   const handleProduct = () => {
-    fetch('/api/produk/all', {
+    fetch("/api/produk/all", {
       method: "GET",
     })
       .then((res) => res.json())
@@ -31,12 +31,12 @@ export default function Produk() {
         setLoading(false);
         setError(err);
       });
-  }
+  };
 
   // button buy add to cart
   const handleAddBuy = (id, price) => {
     if (session) {
-      fetch('/api/orders/create', {
+      fetch("/api/orders/create", {
         method: "POST",
         body: JSON.stringify({
           name: "",
@@ -55,10 +55,10 @@ export default function Produk() {
         .then((res) => {
           if (res.data) {
             toast.success("Berhasil, Lanjut Checkout");
-            router.push("/ladingpage/cart?state=unconfirmed")
+            router.push("/ladingpage/cart?state=unconfirmed");
           } else {
             toast.success("Berhasil, Lanjut Checkout");
-            router.push("/ladingpage/cart?state=unconfirmed")
+            router.push("/ladingpage/cart?state=unconfirmed");
           }
         })
         .catch((err) => {
@@ -70,7 +70,6 @@ export default function Produk() {
       signIn("google"); // Memunculkan dialog login dengan Google
     }
   };
-
 
   useEffect(() => {
     handleProduct();
@@ -86,29 +85,42 @@ export default function Produk() {
             </div>
           </div>
           <div className="row row-pb-md">
-            {data.length > 0 ? data.map((prod, index) => (
-              <div className="col-lg-3 mb-4 text-center" key={index}>
-                <div className="product-entry border">
-                  <a href="#" className="prod-img">
-                    <img
-                      src={prod.image}
-                      className="img-fluid"
-                      alt="Free html5 bootstrap 4 template"
-                    />
-                  </a>
-                  <div className="desc">
-                    <h2>
-                      <a href="#">{prod.name}</a>
-                    </h2>
-                    <span className="price mb-3">{moneyFormat(prod.price)}</span>
-                    <a href={`/ladingpage/produk/detail?id=${prod.id}`}>
-                      <a className="btn btn-outline-dark">Detail</a>
+            {data.length > 0 ? (
+              data.map((prod, index) => (
+                <div className="col-lg-3 mb-4 text-center" key={index}>
+                  <div className="product-entry border">
+                    <a href="#" className="prod-img">
+                      <img
+                        src={prod.image}
+                        className="img-fluid"
+                        alt="Free html5 bootstrap 4 template"
+                      />
                     </a>
-                    <a href className="btn btn-outline-dark ml-2 btn-sm" onClick={() => handleAddBuy(prod.id, prod.price)} >Beli</a>
+                    <div className="desc">
+                      <h2>
+                        <a href="#">{prod.name}</a>
+                      </h2>
+                      <label>Kode Produk : {prod.kode_product}</label>
+                      <span className="price mb-3">
+                        {moneyFormat(prod.price)}
+                      </span>
+                      <a href={`/ladingpage/produk/detail?id=${prod.id}`}>
+                        <a className="btn btn-outline-dark">Detail</a>
+                      </a>
+                      <a
+                        href
+                        className="btn btn-outline-dark ml-2 btn-sm"
+                        onClick={() => handleAddBuy(prod.id, prod.price)}
+                      >
+                        Beli
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )) : <h3 className="text-center text-danger">Belum ada produk</h3>}
+              ))
+            ) : (
+              <h3 className="text-center text-danger">Belum ada produk</h3>
+            )}
 
             <div className="w-100" />
           </div>

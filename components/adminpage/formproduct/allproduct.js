@@ -76,10 +76,10 @@ export default function Allproduct() {
                       />
                     </a>
                     <div className="desc">
-                      <h1>{prod.kode_product}</h1>
                       <h2>
                         <a href="#">{prod.name}</a>
                       </h2>
+                      <label>Kode Produk : {prod.kode_product}</label>
                       <span className="price">{moneyFormat(prod.price)}</span>
                     </div>
                     <div>

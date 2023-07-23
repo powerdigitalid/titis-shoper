@@ -105,7 +105,7 @@ export default function Inputproduct() {
                 <div className="form-group">
                   
                   <div className="form-row">
-                    <div className="form-group col-sm-6">
+                    <div className="form-group col-4">
                       <label>Kode Produk</label>
                       <input
                         type="text"
@@ -115,7 +115,7 @@ export default function Inputproduct() {
                         onChange={(e) => setKodeProduct(e.target.value)}
                       />
                     </div>
-                    <div className="form-group col-sm-6">
+                    <div className="form-group col-4">
                       <label>Nama Produk</label>
                       <input
                         type="text"
@@ -125,7 +125,7 @@ export default function Inputproduct() {
                         onChange={(e) => setName(e.target.value)}
                       />
                     </div>
-                    <div className="form-group col-sm-6">
+                    <div className="form-group col-4">
                       <label>Harga</label>
                       <div className="input-group input-group-sm">
                         <div className="input-group-prepend">
