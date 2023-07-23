@@ -8,6 +8,7 @@ export default function Inputproduct() {
   const [price, setPrice] = useState("");
   const [desc, setDesc] = useState("");
   const [image, setImage] = useState("");
+  const [kode_product, setKodeProduct] = useState("");
   const [loading, setLoading] = useState(false);
   const [filename, setFilename] = useState('')
   const router = useRouter();
@@ -46,6 +47,7 @@ export default function Inputproduct() {
     data.append("price", price);
     data.append("image", image);
     data.append("desc", desc);
+    data.append("kode_product", kode_product);
     setLoading(true);
     fetch("/api/produk/create", {
       method: "POST",
@@ -57,6 +59,7 @@ export default function Inputproduct() {
         setName("");
         setPrice("");
         setDesc("");
+        setKodeProduct("");
         setImage(null);
         toast.success("Produk berhasil ditambahkan");
         router.push("/admin/produk");
@@ -100,7 +103,18 @@ export default function Inputproduct() {
             <div className="author-box-details">
               <div className="author-box-name">
                 <div className="form-group">
+                  
                   <div className="form-row">
+                    <div className="form-group col-sm-6">
+                      <label>Kode Produk</label>
+                      <input
+                        type="text"
+                        className="form-control form-control-sm"
+                        placeholder="Kode Produk"
+                        value={kode_product}
+                        onChange={(e) => setKodeProduct(e.target.value)}
+                      />
+                    </div>
                     <div className="form-group col-sm-6">
                       <label>Nama Produk</label>
                       <input

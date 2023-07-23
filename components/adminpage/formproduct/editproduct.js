@@ -11,6 +11,7 @@ export default function Editproduct() {
   const [name, setName] = useState('')
   const [price, setPrice] = useState('')
   const [desc, setDesc] = useState('')
+  const [kode_product, setKodeProduct] = useState('')
   const [filename, setFilename] = useState('')
   const router = useRouter()
   const { id } = router.query
@@ -47,6 +48,7 @@ export default function Editproduct() {
       setName(json.data.name)
       setPrice(json.data.price)
       setDesc(json.data.desc)
+      setKodeProduct(json.data.kode_product)
       setImage(json.data.image)
       setLoading(false)
     } catch (error) {
@@ -71,6 +73,7 @@ export default function Editproduct() {
     data.append('name', name)
     data.append('price', price)
     data.append('desc', desc)
+    data.append('kode_product', kode_product)
     try {
       const res = await fetch(`/api/produk/update?id=${id}`, {
         method: 'PUT',
@@ -122,6 +125,16 @@ export default function Editproduct() {
               <div className="author-box-name">
                 <div className="form-group">
                   <div className="form-row">
+                    <div className="form-group col-sm-6">
+                      <label>Kode Produk</label>
+                      <input
+                        type="text"
+                        className="form-control form-control-sm"
+                        placeholder="Nama Produk"
+                        value = {kode_product}
+                        onChange={(e) => setKodeProduct(e.target.value)}
+                      />
+                    </div>
                     <div className="form-group col-sm-6">
                       <label>Nama Produk</label>
                       <input

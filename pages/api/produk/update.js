@@ -31,7 +31,7 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: err.message });
       }
       const { id } = req.query; 
-      const { name, price, desc} = req.body; 
+      const { name, price, desc, kode_product} = req.body; 
       const image = req.file ? `/upload/${req.file.filename}` : req.body.image;
       const product = await prisma.product.update({
         where: {
@@ -39,6 +39,7 @@ export default async function handler(req, res) {
         },
         data: {
           name, 
+          kode_product,
           price: parseInt(price),
           desc,
           image,
